@@ -1,0 +1,26 @@
+{
+  "name": "webhero",
+  "version": "1.0.0",
+  "description": "webHero",
+  "main": "main.js",
+  "scripts": {
+    "dev": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gajet5/webHero.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gajet5/webHero/issues"
+  },
+  "homepage": "https://github.com/gajet5/webHero#readme",
+  "dependencies": {
+    "fs-extra": "^8.1.0",
+    "mongoose": "^5.6.1",
+    "nodemon": "^1.19.1",
+    "telegraf": "^3.30.1"
+  }
+}
