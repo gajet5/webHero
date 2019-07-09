@@ -1,9 +1,9 @@
 const path = require('path');
-const Stage = require('telegraf/stage');
 const Scene = require('telegraf/scenes/base');
 
 const accountsModel = require(path.join(__basedir, 'models', 'accounts'));
 const welcomeMessage = require(path.join(__basedir, 'data', 'dialogues', 'standarts', 'welcomeMessage'));
+const keyboard = require(path.join(__basedir, 'scenes', 'start', 'keyboard'));
 
 const start = new Scene('start');
 
@@ -14,8 +14,7 @@ start.enter(async (ctx) => {
         });
 
         if (user) {
-            await ctx.reply(welcomeMessage.alreadyRegistered(user.username));
-            await ctx.reply('ты шо!');
+            await ctx.reply(welcomeMessage.alreadyRegistered(user.username), keyboard.getStartKeyboard('old'));
             return;
         }
 
@@ -27,17 +26,14 @@ start.enter(async (ctx) => {
         });
 
         if (user) {
-            await ctx.reply(welcomeMessage.newUser(newUser.firsName, newUser.username));
+            await ctx.reply(welcomeMessage.newUser(newUser.firsName, newUser.username), keyboard.getStartKeyboard('new'));
         }
-
-        await ctx.reply('ты шо!');
     }
 });
 
-start.leave(async (ctx) => {
-    await ctx.reply('Сцена старта покинута!');
-});
+start.leave(async ctx => await ctx.reply('Сцена старта покинута!'));
 
-start.command('exit', async (ctx) => ctx.scene.leave());
+start.command('exit', async ctx => ctx.scene.leave());
+start.command('createCharacter', async ctx => ctx.scene.enter('createCharacter'));
 
 module.exports = start;

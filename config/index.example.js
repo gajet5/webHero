@@ -1,3 +1,9 @@
 module.exports = {
-    TOKEN: 'YOUR_TELEGRAM_BOT_TOKEN'
+    telegram: {
+        TOKEN: 'token',
+        log: false
+    },
+    db: {
+        URL: 'mongodb://localhost:27017/webHero'
+    }
 };
