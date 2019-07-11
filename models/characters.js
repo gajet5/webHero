@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const Characters = new Schema({
     accountId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Accounts'
+        ref: 'Accounts',
+        require: true
     },
     level: {
         type: Number,

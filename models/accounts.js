@@ -19,6 +19,10 @@ const Accounts = new Schema({
         type: String,
         require: true
     },
+    scene: {
+        type: String,
+        default: 'start'
+    },
     haveCharacter: {
         type: Boolean,
         default: false

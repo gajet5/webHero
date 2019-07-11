@@ -1,0 +1,26 @@
+{
+  "sessions": [
+    {
+      "id": "452479069:452479069",
+      "data": {
+        "scene": {
+          "currentScene": "characterCreate",
+          "nextScene": "",
+          "previousScene": "account"
+        },
+        "account": {
+          "id": "5d1cc03e50eaedea2408b783"
+        },
+        "character": {
+          "id": "5d277fe00461b41b51d6ba8e"
+        },
+        "currentScene": "",
+        "previousScene": "characterCreate",
+        "__scenes": {
+          "current": "characterCreate",
+          "state": {}
+        }
+      }
+    }
+  ]
+}
