@@ -19,6 +19,10 @@ const Accounts = new Schema({
         type: String,
         require: true
     },
+    haveCharacter: {
+        type: Boolean,
+        default: false
+    },
     createTime: {
         type: Date,
         default: Date.now
