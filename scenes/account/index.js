@@ -35,7 +35,9 @@ start.enter(async (ctx) => {
 });
 
 start.command('exit', async ctx => ctx.scene.leave());
-start.action(/createCharacter/, commands.createCharacter);
+start.action(/characterCreate/, commands.swichScene);
+start.action(/characterPlay/, commands.swichScene);
+start.action(/characterDelete/, commands.swichScene);
 
 start.leave(ctx => {
     ctx.session.previousScene = 'account';

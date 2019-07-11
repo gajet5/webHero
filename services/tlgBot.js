@@ -1,5 +1,5 @@
 const Telegraf = require('telegraf');
-const Session = require('telegraf/session');
+const TlgfLocalSession = require('telegraf-session-local');
 const path = require('path');
 
 const config = require(path.join(__basedir, 'config'));
@@ -9,7 +9,10 @@ module.exports = {
     createTlgBot() {
         const Bot = new Telegraf(config.telegram.TOKEN);
 
-        Bot.use(Session());
+        Bot.use((new TlgfLocalSession({
+            database: path.join(__basedir, 'sessions', 'db.json')
+        })).middleware());
+
         Bot.use(stage.middleware());
 
         if (config.telegram.log) {
