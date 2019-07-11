@@ -4,7 +4,7 @@ const Scene = require('telegraf/scenes/base');
 const accountsModel = require(path.join(__basedir, 'models', 'accounts'));
 const commands = require(path.join(__basedir, 'scenes', 'account', 'commands'));
 const keyboards = require(path.join(__basedir, 'scenes', 'account', 'keyboards'));
-const welcomeMessage = require(path.join(__basedir, 'data', 'dialogues', 'account', 'welcomeMessage'));
+const welcomeMessage = require(path.join(__basedir, 'data', 'dialogues', 'account', 'welcome'));
 
 const start = new Scene('account');
 
