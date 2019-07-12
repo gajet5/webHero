@@ -9,14 +9,11 @@ module.exports = {
     },
 
     async swith(ctx, nextScene) {
-        ctx.session.scene.nextScene = nextScene;
-
-        if (this.rules(ctx.session.scene.currentScene, ctx.session.scene.nextScene)) {
-            await ctx.scene.enter(ctx.session.scene.nextScene);
+        if (this.rules(ctx.session.scene.currentScene, nextScene)) {
+            await ctx.scene.enter(nextScene);
         } else {
             await ctx.reply(errorsMessage.sceneRules());
             await ctx.scene.enter(ctx.session.scene.currentScene);
         }
-        ctx.session.scene.nextScene = '';
     }
 };

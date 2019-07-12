@@ -12,5 +12,13 @@ module.exports = {
     characterPlay: {
         characterPlay: true,
         game: true
+    },
+    characterDelete: {
+        characterDelete: true,
+        account: true
+    },
+    game: {
+        game: true
     }
+
 };

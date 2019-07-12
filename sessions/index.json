@@ -5,18 +5,19 @@
       "data": {
         "user": {},
         "scene": {
-          "currentScene": "game",
-          "previousScene": "account",
-          "nextScene": ""
+          "currentScene": "account",
+          "previousScene": "characterDelete"
         },
         "account": {
           "id": "5d1cc03e50eaedea2408b783"
         },
         "character": {
-          "id": "5d28482502cbf9b395fcae81"
+          "id": "5d288e524918e9f5c8777910"
         },
+        "currentScene": "",
+        "previousScene": "game",
         "__scenes": {
-          "current": "game",
+          "current": "account",
           "state": {}
         }
       }

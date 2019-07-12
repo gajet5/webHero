@@ -14,4 +14,9 @@ characterPlay.enter(async (ctx) => {
     await sceneUtils.swith(ctx, 'game');
 });
 
+characterPlay.leave(ctx => {
+    ctx.session.currentScene = '';
+    ctx.session.previousScene = 'characterPlay';
+});
+
 module.exports = characterPlay;

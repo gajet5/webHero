@@ -5,8 +5,8 @@ const config = require(path.join(__basedir, 'config'));
 
 mongoose.connect(config.db.URL, {
     useNewUrlParser: true,
-    useCreateIndex: true
-    // useFindAndModify: false // на всякий случай
+    useCreateIndex: true,
+    useFindAndModify: false
 });
 
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));

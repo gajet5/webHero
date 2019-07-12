@@ -12,7 +12,7 @@ characterCreate.enter(async (ctx) => {
     ctx.session.scene.currentScene = 'characterCreate';
     await ctx.reply(characterCreateMessage.startDialog());
     await commonUtils.sleep(1);
-    await ctx.reply(characterCreateMessage.startCreateCharacter, keyboards.getStatsKeyboard());
+    await ctx.reply(characterCreateMessage.startCreateCharacter(), keyboards.getStatsKeyboard());
 });
 
 characterCreate.action(/getStatsCharacter/, commands.getStats);
