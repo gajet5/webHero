@@ -1,12 +1,17 @@
 const path = require('path');
 const Scene = require('telegraf/scenes/base');
 
+const charactersModel = require(path.join(__basedir, 'models', 'characters'));
+const sceneUtils = require(path.join(__basedir, 'utils', 'scene'));
+
 const characterPlay = new Scene('characterPlay');
 
 characterPlay.enter(async (ctx) => {
-    await ctx.reply('Добро пожаловать в сцену подрузки персонажа.')
-});
+    ctx.session.scene.currentScene = 'characterPlay';
+    const character = await charactersModel.findOne({ accountId: ctx.session.account.id });
+    ctx.session.character.id = character.id;
 
-characterPlay.command('exit', async ctx => ctx.scene.leave());
+    await sceneUtils.swith(ctx, 'game');
+});
 
 module.exports = characterPlay;

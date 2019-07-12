@@ -28,7 +28,8 @@ const Characters = new Schema({
         default: 1
     },
     zone: {
-        type: String
+        type: String,
+        default: 'start'
     },
     exp: {
         type: Number,

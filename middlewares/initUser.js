@@ -1,5 +1,6 @@
 module.exports = (ctx, next) => {
     if (!ctx.session.scene || !ctx.session.scene.currentScene) {
+        ctx.session.user = {};
         ctx.session.scene = {};
         ctx.session.account = {};
         ctx.session.character = {};

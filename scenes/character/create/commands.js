@@ -3,6 +3,8 @@ const path = require('path');
 const accountsModel = require(path.join(__basedir, 'models', 'accounts'));
 const charactersModel = require(path.join(__basedir, 'models', 'characters'));
 
+const sceneUtils = require(path.join(__basedir, 'utils', 'scene'));
+
 module.exports = {
     async getStats(ctx) {
         function randomStat() {
@@ -39,5 +41,7 @@ module.exports = {
             haveCharacter: true
         });
         ctx.session.character.id = character.id;
+
+        await sceneUtils.swith(ctx, 'game');
     }
 };

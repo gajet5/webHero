@@ -7,6 +7,4 @@ characterDelete.enter(async (ctx) => {
     await ctx.reply('Добро пожаловать в сцену удаления персонажа.')
 });
 
-characterDelete.command('exit', async ctx => ctx.scene.leave());
-
 module.exports = characterDelete;

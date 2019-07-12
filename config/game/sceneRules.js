@@ -4,5 +4,13 @@ module.exports = {
         characterCreate: true,
         characterDelete: true,
         characterPlay: true
+    },
+    characterCreate: {
+        characterCreate: true,
+        game: true
+    },
+    characterPlay: {
+        characterPlay: true,
+        game: true
     }
 };

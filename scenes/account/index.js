@@ -35,8 +35,6 @@ start.enter(async (ctx) => {
     }
 });
 
-start.command('exit', async ctx => ctx.scene.leave());
-
 start.action(/characterCreate/, commands.swichScene);
 start.action(/characterPlay/, commands.swichScene);
 start.action(/characterDelete/, commands.swichScene);

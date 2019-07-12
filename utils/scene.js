@@ -8,8 +8,8 @@ module.exports = {
         return !!sceneRulesCfg[currentScene][nextScene];
     },
 
-    async swith(ctx) {
-        ctx.session.scene.nextScene = ctx.callbackQuery.data;
+    async swith(ctx, nextScene) {
+        ctx.session.scene.nextScene = nextScene;
 
         if (this.rules(ctx.session.scene.currentScene, ctx.session.scene.nextScene)) {
             await ctx.scene.enter(ctx.session.scene.nextScene);
