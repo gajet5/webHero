@@ -3,6 +3,8 @@ const path = require('path');
 const accountsModel = require(path.join(__basedir, 'models', 'accounts'));
 const charactersModel = require(path.join(__basedir, 'models', 'characters'));
 
+const characterCreateMessage = require(path.join(__basedir, 'data', 'dialogues', 'character', 'create'));
+
 const sceneUtils = require(path.join(__basedir, 'utils', 'scene'));
 
 module.exports = {
@@ -41,6 +43,8 @@ module.exports = {
             haveCharacter: true
         });
         ctx.session.character.id = character.id;
+
+        await ctx.reply(characterCreateMessage.chacterIsCreated(stats));
 
         await sceneUtils.swith(ctx, 'game');
     }
