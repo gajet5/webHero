@@ -1,4 +1,5 @@
 const path = require('path');
+const Chance = require('chance');
 
 const accountsModel = require(path.join(__basedir, 'models', 'accounts'));
 const charactersModel = require(path.join(__basedir, 'models', 'characters'));
@@ -9,15 +10,7 @@ const sceneUtils = require(path.join(__basedir, 'utils', 'scene'));
 
 module.exports = {
     async getStats(ctx) {
-        function randomStat() {
-            let numb;
-
-            do {
-                numb = Math.round((Math.random() * 10) % 7);
-            } while (numb === 0);
-
-            return numb;
-        }
+        const chance = new Chance();
 
         const stats = {
             int: 0,
@@ -32,7 +25,10 @@ module.exports = {
             let rndStats = [];
 
             for (let i = 0; i < 4; i += 1) {
-                rndStats.push(randomStat());
+                rndStats.push(chance.integer({
+                    min: 1,
+                    max: 6
+                }));
             }
 
             rndStats.splice(rndStats.findIndex(value => Math.min(...rndStats) === value), 1);

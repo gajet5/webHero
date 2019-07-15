@@ -3,5 +3,6 @@ node_modules/
 .vscode/*
 .vs/*
 
-/config/index.js
-/sessions/*
+config/index.js
+
+sessions/

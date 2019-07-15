@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/gajet5/webHero#readme",
   "dependencies": {
+    "chance": "^1.0.18",
     "fs-extra": "^8.1.0",
     "mongoose": "^5.6.1",
     "nodemon": "^1.19.1",
