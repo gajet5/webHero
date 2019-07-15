@@ -29,9 +29,14 @@ module.exports = {
         };
 
         for (let item in stats) {
-            for (let i = 0; i < 3; i += 1) {
-                stats[item] += randomStat();
+            let rndStats = [];
+
+            for (let i = 0; i < 4; i += 1) {
+                rndStats.push(randomStat());
             }
+
+            rndStats.splice(rndStats.findIndex(value => Math.min(...rndStats) === value), 1);
+            rndStats.forEach(value => stats[item] += value);
         }
 
         let account = await accountsModel.findById(ctx.session.account.id);
