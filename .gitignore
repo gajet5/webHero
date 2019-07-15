@@ -4,4 +4,4 @@ node_modules/
 .vs/*
 
 /config/index.js
-/sessions/index.json
+/sessions/*
