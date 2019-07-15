@@ -5,10 +5,11 @@ const accountsModel = require(path.join(__basedir, 'models', 'accounts'));
 const charactersModel = require(path.join(__basedir, 'models', 'characters'));
 const sceneUtils = require(path.join(__basedir, 'utils', 'scene'));
 
-const characterDelete = new Scene('characterDelete');
+const sceneName = 'characterDelete';
+const characterDelete = new Scene(sceneName);
 
 characterDelete.enter(async (ctx) => {
-    ctx.session.scene.currentScene = 'characterDelete';
+    ctx.session.scene.currentScene = sceneName;
     await accountsModel.findByIdAndUpdate(ctx.session.account.id, { haveCharacter: false });
     await charactersModel.findOneAndDelete({ accountId: ctx.session.account.id });
 
@@ -18,7 +19,7 @@ characterDelete.enter(async (ctx) => {
 
 characterDelete.leave(ctx => {
     ctx.session.scene.currentScene = '';
-    ctx.session.scene.previousScene = 'characterDelete';
+    ctx.session.scene.previousScene = sceneName;
 });
 
 module.exports = characterDelete;
