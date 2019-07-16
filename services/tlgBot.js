@@ -29,6 +29,7 @@ module.exports = {
         if (config.telegram.debugCommands) {
             Bot.command('renew', async ctx => ctx.scene.reenter());
             Bot.command('exit', async ctx => ctx.scene.leave());
+            Bot.command('scene', async ctx => await ctx.reply(ctx.scene.current));
         }
 
         Bot.start(async ctx => ctx.scene.enter('account'));

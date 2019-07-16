@@ -4,16 +4,16 @@ const sceneRulesCfg = require(path.join(__basedir, 'config', 'game', 'sceneRules
 const errorsMessage = require(path.join(__basedir, 'data', 'dialogues', 'standarts', 'errors'));
 
 module.exports = {
-    rules(currentScene, nextScene) {
-        return !!sceneRulesCfg[currentScene][nextScene];
+    rules(current, next) {
+        return !!sceneRulesCfg[current][next];
     },
 
-    async swith(ctx, nextScene) {
-        if (this.rules(ctx.session.scene.currentScene, nextScene)) {
-            await ctx.scene.enter(nextScene);
+    async swith(ctx, next) {
+        if (this.rules(ctx.session.scene.current, next)) {
+            await ctx.scene.enter(next);
         } else {
             await ctx.reply(errorsMessage.sceneRules());
-            await ctx.scene.enter(ctx.session.scene.currentScene);
+            await ctx.scene.enter(ctx.session.scene.current);
         }
     }
 };

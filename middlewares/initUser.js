@@ -1,11 +1,19 @@
 module.exports = (ctx, next) => {
-    if (!ctx.session.scene || !ctx.session.scene.currentScene) {
-        ctx.session.user = {};
+    if (!ctx.session.scene) {
         ctx.session.scene = {};
-        ctx.session.account = {};
-        ctx.session.character = {};
-
-        ctx.scene.enter('account');
     }
+
+    if (!ctx.session.user) {
+        ctx.session.user = {};
+    }
+
+    if (!ctx.session.account) {
+        ctx.session.account = {};
+    }
+
+    if (!ctx.session.character) {
+        ctx.session.character = {};
+    }
+
     next();
 };

@@ -10,7 +10,7 @@ const sceneName = 'account';
 const start = new Scene(sceneName);
 
 start.enter(async (ctx) => {
-    ctx.session.scene.currentScene = sceneName;
+    ctx.session.scene.current = sceneName;
 
     if (ctx.from) {
         let account = await accountsModel.findOne({
@@ -41,8 +41,8 @@ start.action(/characterPlay/, commands.swichScene);
 start.action(/characterDelete/, commands.swichScene);
 
 start.leave(ctx => {
-    ctx.session.scene.currentScene = '';
-    ctx.session.scene.previousScene = sceneName;
+    ctx.session.scene.current = '';
+    ctx.session.scene.previous = sceneName;
 });
 
 module.exports = start;

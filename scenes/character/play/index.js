@@ -8,7 +8,7 @@ const sceneName = 'characterPlay';
 const characterPlay = new Scene(sceneName);
 
 characterPlay.enter(async (ctx) => {
-    ctx.session.scene.currentScene = sceneName;
+    ctx.session.scene.current = sceneName;
     const character = await charactersModel.findOne({ accountId: ctx.session.account.id });
     ctx.session.character.id = character.id;
 
@@ -16,8 +16,8 @@ characterPlay.enter(async (ctx) => {
 });
 
 characterPlay.leave(ctx => {
-    ctx.session.currentScene = '';
-    ctx.session.previousScene = sceneName;
+    ctx.session.scene.current = '';
+    ctx.session.scene.previous = sceneName;
 });
 
 module.exports = characterPlay;

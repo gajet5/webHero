@@ -1,24 +1,21 @@
 const path = require('path');
 const Scene = require('telegraf/scenes/base');
 
-const commonUtils = require(path.join(__basedir, 'utils', 'common'));
+const charactersModel = require(path.join(__basedir, 'models', 'characters'));
 
 const sceneName = 'game';
 const game = new Scene(sceneName);
 
 game.enter(async (ctx) => {
-    /*
-    * 1) Новый или старый игрок
-    * 2) В какой зоне он находится
-    * 3) Какие действия он может совершить
-    * */
-    ctx.session.scene.currentScene = sceneName;
-    await ctx.reply(`Игровая главная сцена`);
+    ctx.session.scene.current = sceneName;
+
+    const character = await charactersModel.findById(ctx.session.character.id);
+    ctx.scene.enter(character.zone);
 });
 
 game.leave(ctx => {
-    ctx.session.currentScene = '';
-    ctx.session.previousScene = sceneName;
+    ctx.session.scene.current = '';
+    ctx.session.scene.previous = sceneName;
 });
 
 module.exports = game;
