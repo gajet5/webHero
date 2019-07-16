@@ -3,7 +3,7 @@ const Scene = require('telegraf/scenes/base');
 
 const commonUtils = require(path.join(__basedir, 'utils', 'common'));
 
-const sceneName = 'gameStart';
+const sceneName = 'gameZonesStart';
 const gameNew = new Scene(sceneName);
 
 gameNew.enter(async (ctx) => {
