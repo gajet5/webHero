@@ -6,11 +6,9 @@ const commands = require(path.join(__dirname, 'commands'));
 const keyboards = require(path.join(__dirname, 'keyboards'));
 const accountMessage = require(path.join(__basedir, 'data', 'dialogues', 'account'));
 
-const sceneName = 'account';
-const start = new Scene(sceneName);
+const start = new Scene('account');
 
 start.enter(async (ctx) => {
-    ctx.session.scene.current = sceneName;
 
     if (ctx.from) {
         let account = await accountsModel.findOne({
@@ -39,10 +37,5 @@ start.enter(async (ctx) => {
 start.action(/characterCreate/, commands.swichScene);
 start.action(/characterPlay/, commands.swichScene);
 start.action(/characterDelete/, commands.swichScene);
-
-start.leave(ctx => {
-    ctx.session.scene.current = '';
-    ctx.session.scene.previous = sceneName;
-});
 
 module.exports = start;

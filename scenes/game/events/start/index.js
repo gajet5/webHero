@@ -1,19 +1,18 @@
 const path = require('path');
 const Scene = require('telegraf/scenes/base');
 
+const charactersModel = require(path.join(__basedir, 'models', 'characters'));
 const commonUtils = require(path.join(__basedir, 'utils', 'common'));
 
-const sceneName = 'gameZonesStart';
-const gameNew = new Scene(sceneName);
+const gameNew = new Scene('gameEventsStart');
 
 gameNew.enter(async (ctx) => {
-    ctx.session.scene.current = sceneName;
     await ctx.reply(`Вступление новой игры`);
-});
+    await charactersModel.findByIdAndUpdate(ctx.session.character.id, {
+        zone: 'talkingIslandTown'
+    });
 
-gameNew.leave(ctx => {
-    ctx.session.scene.current = '';
-    ctx.session.scene.previous = sceneName;
+    ctx.scene.enter('gameZones')
 });
 
 module.exports = gameNew;

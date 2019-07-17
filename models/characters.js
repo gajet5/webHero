@@ -29,7 +29,7 @@ const Characters = new Schema({
     },
     zone: {
         type: String,
-        default: 'gameZonesStart'
+        default: ''
     },
     exp: {
         type: Number,
