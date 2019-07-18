@@ -9,5 +9,10 @@ module.exports = {
         }
 
         return Markup.inlineKeyboard(keyboards, { columns: 1 }).extra();
+    },
+    getCharacterAction() {
+        return Markup.keyboard([
+            '🎒 инвентарь'
+        ]).resize().extra();
     }
 };

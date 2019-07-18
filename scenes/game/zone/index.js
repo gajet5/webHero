@@ -22,7 +22,8 @@ game.enter(async (ctx) => {
     }
 
     const zoneData = getZoneData();
-    ctx.reply('Добро пожаловать в город', keyboards.getKeyboard(zoneData.actions));
+    await ctx.reply('Добро пожаловать в город', keyboards.getKeyboard(zoneData.actions));
+    await ctx.reply('_', keyboards.getCharacterAction());
 
     for (let action in zoneData.actions) {
         game.action(new RegExp(action), zoneData.actions[action].handler);
