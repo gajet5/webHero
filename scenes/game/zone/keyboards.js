@@ -12,7 +12,7 @@ module.exports = {
     },
     getCharacterAction() {
         return Markup.keyboard([
-            '🎒 инвентарь'
+            '🎒 Инвентарь'
         ]).resize().extra();
     }
 };

@@ -30,4 +30,6 @@ game.enter(async (ctx) => {
     }
 });
 
+game.hears('🎒 Инвентарь', ctx => ctx.scene.enter('characterInventoryScene'));
+
 module.exports = game;
