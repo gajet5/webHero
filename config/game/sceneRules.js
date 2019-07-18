@@ -19,6 +19,9 @@ module.exports = {
     },
     game: {
         game: true
+    },
+    characterInventoryScene: {
+        characterInventoryScene: true,
+        game: true
     }
-
 };
