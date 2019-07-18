@@ -13,6 +13,6 @@ module.exports = {
     getCharacterAction() {
         return Markup.keyboard([
             '🎒 Инвентарь'
-        ]).resize().extra();
+        ]).oneTime(true).resize().extra();
     }
 };
