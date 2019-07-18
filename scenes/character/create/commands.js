@@ -18,7 +18,7 @@ module.exports = {
             con: 0,
             men: 0,
             dex: 0,
-            wit: 0
+            luck: 0
         };
 
         for (let item in stats) {

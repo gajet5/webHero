@@ -12,7 +12,7 @@ gameNew.enter(async (ctx) => {
         zone: 'talkingIslandTown'
     });
 
-    ctx.scene.enter('gameZones')
+    ctx.scene.enter('gameZone')
 });
 
 module.exports = gameNew;

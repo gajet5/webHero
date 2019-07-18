@@ -17,7 +17,7 @@ module.exports = {
 Ваша телосложение ${ stats.con }
 Ваша сила разума ${ stats.men }
 Ваш локовсть ${ stats.dex }
-Ваше везение ${ stats.wit }
+Ваше везение ${ stats.luck }
        `;
     }
 };

@@ -65,12 +65,8 @@ const Characters = new Schema({
             type: Number,
             default: 1
         },
-        // Влияет на Сопротивлаемость к дебафам
-        wit: {
-            type: Number,
-            default: 1
-        },
-        critRate: {
+        // Влияет на удачу (резисты, крит и пр)
+        luck: {
             type: Number,
             default: 1
         },

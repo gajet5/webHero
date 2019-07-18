@@ -10,7 +10,7 @@ game.enter(async (ctx) => {
     if (!character.zone) {
         ctx.scene.enter('gameEventsStart');
     } else {
-        ctx.scene.enter('gameZones');
+        ctx.scene.enter('gameZone');
     }
 
 });
