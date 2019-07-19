@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const Scene = require('telegraf/scenes/base');
 
 const charactersModel = require(path.join(__basedir, 'models', 'characters'));
@@ -22,8 +23,9 @@ game.enter(async (ctx) => {
     }
 
     const zoneData = getZoneData();
-    await ctx.reply('Добро пожаловать в город', keyboards.getKeyboard(zoneData.actions));
     await ctx.reply('_', keyboards.getCharacterAction());
+    await ctx.replyWithPhoto({ source: zoneData.info.img });
+    await ctx.reply(zoneData.info.description, keyboards.getKeyboard(zoneData.actions));
 
     for (let action in zoneData.actions) {
         game.action(new RegExp(action), zoneData.actions[action].handler);

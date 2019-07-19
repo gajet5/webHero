@@ -1,4 +1,10 @@
+const path = require('path');
+
 module.exports = {
+    info: {
+        img: path.join(__dirname, '..', 'media', 'img', 'ti_town.jpg'),
+        description: 'Описание деревни в которой оказывается наш герой'
+    },
     actions: {
         getMerchants: {
             text: 'Торговать',

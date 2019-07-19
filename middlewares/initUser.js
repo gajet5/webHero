@@ -11,5 +11,10 @@ module.exports = (ctx, next) => {
         ctx.session.character = {};
     }
 
+    if (!ctx.session.__scenes.current) {
+        ctx.scene.enter('account');
+        return;
+    }
+
     next();
 };
