@@ -10,7 +10,7 @@ module.exports = {
 
         return Markup.inlineKeyboard(keyboards, { columns: 1 }).extra();
     },
-    getCharacterAction() {
+    getCharacterActionKeyboard() {
         return Markup.keyboard([
             '🎒 Инвентарь'
         ]).oneTime(true).resize().extra();

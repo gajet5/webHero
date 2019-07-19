@@ -9,7 +9,7 @@ module.exports = {
         getMerchants: {
             text: 'Торговать',
             handler: async (ctx) => {
-                await ctx.reply('Торговать ага ща, разбежался');
+
             }
         },
         getInformations: {

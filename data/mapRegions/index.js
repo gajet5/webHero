@@ -1,5 +1,6 @@
 module.exports = {
     talkingIsland: {
-        talkingIslandTown: 'town'
+        talkingIslandTown: 'town',
+        talkingIslandMerchants: 'merchants'
     }
 };

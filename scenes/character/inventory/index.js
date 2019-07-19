@@ -3,8 +3,8 @@ const Scene = require('telegraf/scenes/base');
 
 const charactersModel = require(path.join(__basedir, 'models', 'characters'));
 const charactersInventoryModel = require(path.join(__basedir, 'models', 'charactersInventory'));
-const sceneUtils = require(path.join(__basedir, 'utils', 'scene'));
-const commonUtils = require(path.join(__basedir, 'utils', 'common'));
+
+const keyboards = require(path.join(__dirname, 'keyboards'));
 
 const characterInventory = new Scene('characterInventory');
 
@@ -13,15 +13,13 @@ characterInventory.enter(async (ctx) => {
     const invntory = await charactersInventoryModel.find({ ownerId: character.id });
     
     if (!invntory.length){
-        await ctx.reply('Инвентарь пуст');
-        await commonUtils.sleep(2);
-        await sceneUtils.swith(ctx, 'game');
+        await ctx.reply('Инвентарь пуст', keyboards.getCloseInventaryKeyboard());
         return;
     }
 
-    await ctx.reply('Вот твои вещи');
-    await commonUtils.sleep(2);
-    await sceneUtils.swith(ctx, 'game');
+    await ctx.reply('Вещи в инветате', keyboards.getCloseInventaryKeyboard());
 });
+
+characterInventory.hears('❌ Закрыть инвентарь', ctx => ctx.scene.enter(ctx.session.scenes.previous));
 
 module.exports = characterInventory;

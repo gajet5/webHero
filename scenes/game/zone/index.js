@@ -23,7 +23,7 @@ game.enter(async (ctx) => {
     }
 
     const zoneData = getZoneData();
-    await ctx.reply('_', keyboards.getCharacterAction());
+    await ctx.reply('.', keyboards.getCharacterActionKeyboard());
     await ctx.replyWithPhoto({ source: zoneData.info.img });
     await ctx.reply(zoneData.info.description, keyboards.getKeyboard(zoneData.actions));
 
@@ -33,5 +33,7 @@ game.enter(async (ctx) => {
 });
 
 game.hears('🎒 Инвентарь', ctx => ctx.scene.enter('characterInventory'));
+
+game.leave((ctx) => ctx.session.scenes.previous = ctx.session.__scenes.current);
 
 module.exports = game;

@@ -6,8 +6,6 @@ const charactersModel = require(path.join(__basedir, 'models', 'characters'));
 
 const characterCreateMessage = require(path.join(__basedir, 'data', 'dialogues', 'character', 'create'));
 
-const sceneUtils = require(path.join(__basedir, 'utils', 'scene'));
-
 module.exports = {
     async getStats(ctx) {
         const chance = new Chance();
@@ -47,6 +45,6 @@ module.exports = {
 
         await ctx.reply(characterCreateMessage.chacterIsCreated(stats));
 
-        await sceneUtils.swith(ctx, 'game');
+        await ctx.scene.enter('game');
     }
 };
