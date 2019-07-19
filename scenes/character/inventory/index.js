@@ -6,9 +6,9 @@ const charactersInventoryModel = require(path.join(__basedir, 'models', 'charact
 const sceneUtils = require(path.join(__basedir, 'utils', 'scene'));
 const commonUtils = require(path.join(__basedir, 'utils', 'common'));
 
-const gameCharacterInventory = new Scene('characterInventoryScene');
+const characterInventory = new Scene('characterInventory');
 
-gameCharacterInventory.enter(async (ctx) => {
+characterInventory.enter(async (ctx) => {
     const character = await charactersModel.findOne({ accountId: ctx.session.account.id });
     const invntory = await charactersInventoryModel.find({ ownerId: character.id });
     
@@ -24,4 +24,4 @@ gameCharacterInventory.enter(async (ctx) => {
     await sceneUtils.swith(ctx, 'game');
 });
 
-module.exports = gameCharacterInventory;
+module.exports = characterInventory;

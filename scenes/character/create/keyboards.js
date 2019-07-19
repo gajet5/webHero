@@ -1,11 +1,9 @@
-const { Extra } = require('telegraf');
+const { Markup } = require('telegraf');
 
 module.exports = {
     getStatsKeyboard() {
-        return Extra.HTML().markup(markup => {
-            return markup.inlineKeyboard([
-                markup.callbackButton('Раскидать статы', 'getStatsCharacter'),
-            ]);
-        });
+        return Markup.inlineKeyboard([
+            Markup.callbackButton('Раскидать статы', 'getStatsCharacter'),
+        ]).extra();
     }
 };

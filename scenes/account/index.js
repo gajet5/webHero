@@ -9,7 +9,6 @@ const accountMessage = require(path.join(__basedir, 'data', 'dialogues', 'accoun
 const start = new Scene('account');
 
 start.enter(async (ctx) => {
-
     if (ctx.from) {
         let account = await accountsModel.findOne({
             userId: ctx.from.id

@@ -17,11 +17,11 @@ module.exports = {
         characterDelete: true,
         account: true
     },
-    game: {
+    characterInventory: {
+        characterInventoryScene: true,
         game: true
     },
-    characterInventoryScene: {
-        characterInventoryScene: true,
+    game: {
         game: true
     }
 };

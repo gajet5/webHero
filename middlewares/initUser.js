@@ -1,8 +1,4 @@
 module.exports = (ctx, next) => {
-    if (!ctx.session.scene) {
-        ctx.session.scene = {};
-    }
-
     if (!ctx.session.user) {
         ctx.session.user = {};
     }
