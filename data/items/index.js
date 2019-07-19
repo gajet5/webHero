@@ -1,5 +1,9 @@
-const weapons = require('weapons');
+const weapons = require('./weapons');
+const armors = require('./armors');
+const etc = require('./etc');
 
 module.exports = {
-    weapons
+    weapons,
+    armors,
+    etc
 };

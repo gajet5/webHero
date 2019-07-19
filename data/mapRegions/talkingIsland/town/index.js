@@ -1,5 +1,7 @@
 const path = require('path');
 
+const charactersModel = require(path.join(__basedir, 'models', 'characters'));
+
 module.exports = {
     info: {
         img: path.join(__dirname, '..', 'media', 'img', 'ti_town.jpg'),
@@ -9,7 +11,10 @@ module.exports = {
         getMerchants: {
             text: 'Торговать',
             handler: async (ctx) => {
-
+                await charactersModel.findByIdAndUpdate(ctx.session.character.id, {
+                    zone: 'talkingIslandMerchant'
+                });
+                await ctx.scene.enter('game');
             }
         },
         getInformations: {
