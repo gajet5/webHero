@@ -20,6 +20,6 @@ characterInventory.enter(async (ctx) => {
     await ctx.reply('Вещи в инветате', keyboards.getCloseInventaryKeyboard());
 });
 
-characterInventory.hears('❌ Закрыть инвентарь', ctx => ctx.scene.enter(ctx.session.scenes.previous));
+characterInventory.hears('❌ Закрыть инвентарь', async ctx => await ctx.scene.enter(ctx.session.scenes.previous));
 
 module.exports = characterInventory;

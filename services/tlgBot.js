@@ -32,7 +32,7 @@ module.exports = {
             Bot.command('scene', async ctx => await ctx.reply(`Текущая сцена: ${ctx.session.__scenes.current}`));
         }
 
-        Bot.start(async ctx => ctx.scene.enter('account'));
+        Bot.start(async ctx => await ctx.scene.enter('account'));
         return Bot.launch();
     }
 };

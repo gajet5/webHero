@@ -32,7 +32,7 @@ game.enter(async (ctx) => {
     }
 });
 
-game.hears('🎒 Инвентарь', ctx => ctx.scene.enter('characterInventory'));
+game.hears('🎒 Инвентарь', async ctx => await ctx.scene.enter('characterInventory'));
 
 game.leave((ctx) => ctx.session.scenes.previous = ctx.session.__scenes.current);
 

@@ -11,7 +11,7 @@ characterDelete.enter(async (ctx) => {
     await charactersModel.deleteMany({ accountId: ctx.session.account.id });
 
     ctx.reply('Ваш персонаж был удалён.');
-    ctx.scene.enter('account');
+    await ctx.scene.enter('account');
 });
 
 module.exports = characterDelete;

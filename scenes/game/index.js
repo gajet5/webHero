@@ -8,9 +8,9 @@ const game = new Scene('game');
 game.enter(async (ctx) => {
     const character = await charactersModel.findById(ctx.session.character.id);
     if (!character.zone) {
-        ctx.scene.enter('gameEventsStart');
+        await ctx.scene.enter('gameEventsStart');
     } else {
-        ctx.scene.enter('gameZone');
+        await ctx.scene.enter('gameZone');
     }
 
 });

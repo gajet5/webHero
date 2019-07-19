@@ -1,4 +1,4 @@
-module.exports = (ctx, next) => {
+module.exports = async (ctx, next) => {
     if (!ctx.session.scenes) {
         ctx.session.scenes = {};
     }
@@ -16,7 +16,7 @@ module.exports = (ctx, next) => {
     }
 
     if (!ctx.session.__scenes.current) {
-        ctx.scene.enter('account');
+        await ctx.scene.enter('account');
         return;
     }
 
