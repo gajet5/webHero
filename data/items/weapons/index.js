@@ -1,6 +1,6 @@
 module.exports = {
     1: {
-        name: 'Short Sword',
+        name: 'Короткий меч',
         weaponType: 'SWORD',
         price: 590,
         stats: {

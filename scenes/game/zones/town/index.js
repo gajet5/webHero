@@ -1,28 +1,18 @@
 const path = require('path');
-const fs = require('fs');
 const Scene = require('telegraf/scenes/base');
 
 const charactersModel = require(path.join(__basedir, 'models', 'characters'));
 
-const pathToMapRegions = path.join(__basedir, 'data', 'mapRegions');
-const mapRegions = require(pathToMapRegions);
+const getZoneData = require(path.join(__basedir, 'utils', 'getZoneData'));
 
 const keyboards = require(path.join(__dirname, 'keyboards'));
 
-const game = new Scene('gameZone');
+const game = new Scene('gameZoneTown');
 
 game.enter(async (ctx) => {
     const character = await charactersModel.findById(ctx.session.character.id);
+    const zoneData = await getZoneData(character);
 
-    function getZoneData() {
-        for (let mapRegion in mapRegions) {
-            if (character.zone in mapRegions[mapRegion]) {
-                return require(path.join(pathToMapRegions, mapRegion, mapRegions[mapRegion][character.zone]));
-            }
-        }
-    }
-
-    const zoneData = getZoneData();
     await ctx.reply('.', keyboards.getCharacterActionKeyboard());
     await ctx.replyWithPhoto({ source: zoneData.info.img });
     await ctx.reply(zoneData.info.description, keyboards.getKeyboard(zoneData.actions));

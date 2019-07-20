@@ -19,9 +19,9 @@ const Accounts = new Schema({
         type: String,
         require: true
     },
-    scene: {
-        type: String,
-        default: 'start'
+    firstTime: {
+        type: Boolean,
+        default: true
     },
     haveCharacter: {
         type: Boolean,
