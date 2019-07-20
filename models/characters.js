@@ -27,9 +27,13 @@ const Characters = new Schema({
         type: Number,
         default: 1
     },
+    mapRegion: {
+        type: String,
+        default: 'talkingIsland'
+    },
     zone: {
         type: String,
-        default: ''
+        default: 'town'
     },
     exp: {
         type: Number,
