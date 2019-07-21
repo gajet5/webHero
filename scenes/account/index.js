@@ -6,9 +6,9 @@ const commands = require(path.join(__dirname, 'commands'));
 const keyboards = require(path.join(__dirname, 'keyboards'));
 const accountMessage = require(path.join(__basedir, 'data', 'dialogues', 'account'));
 
-const start = new Scene('account');
+const account = new Scene('account');
 
-start.enter(async (ctx) => {
+account.enter(async (ctx) => {
     if (ctx.from) {
         let account = await accountsModel.findOne({
             userId: ctx.from.id
@@ -33,8 +33,8 @@ start.enter(async (ctx) => {
     }
 });
 
-start.action(/characterCreate/, commands.swichScene);
-start.action(/characterPlay/, commands.swichScene);
-start.action(/characterDelete/, commands.swichScene);
+account.action(/characterCreate/, commands.swichScene);
+account.action(/characterPlay/, commands.swichScene);
+account.action(/characterDelete/, commands.swichScene);
 
-module.exports = start;
+module.exports = account;
