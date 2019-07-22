@@ -12,7 +12,6 @@ game.enter(async (ctx) => {
 
     if (account.firstTime) {
         await ctx.scene.enter('gameEventsStart');
-
     }
 
     switch (character.zone) {
@@ -26,7 +25,6 @@ game.enter(async (ctx) => {
             await ctx.reply(`Игровой зоны не существует`);
             await ctx.scene.enter('account');
     }
-
 });
 
 module.exports = game;

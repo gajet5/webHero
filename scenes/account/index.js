@@ -10,8 +10,6 @@ const accountMessage = require(path.join(__basedir, 'data', 'dialogues', 'accoun
 const account = new Scene('account');
 
 account.enter(async (ctx) => {
-    const messages = [];
-
     if (ctx.from) {
         let account = await accountsModel.findOne({
             userId: ctx.from.id
@@ -29,12 +27,10 @@ account.enter(async (ctx) => {
         ctx.session.account.id = account.id;
 
         if (account.haveCharacter) {
-            messages.push(await ctx.reply(accountMessage.alreadyRegistered(account.username), keyboards.getKeyboard(account.haveCharacter)));
+            ctx.session.messages.push(await ctx.reply(accountMessage.alreadyRegistered(account.username), keyboards.getKeyboard(account.haveCharacter)));
         } else {
-            messages.push(await ctx.reply(accountMessage.newUser(account.firsName, account.username), keyboards.getKeyboard(account.haveCharacter)));
+            ctx.session.messages.push(await ctx.reply(accountMessage.newUser(account.firsName, account.username), keyboards.getKeyboard(account.haveCharacter)));
         }
-
-        ctx.session.messages = messages;
     }
 });
 
