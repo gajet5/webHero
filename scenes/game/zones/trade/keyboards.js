@@ -1,18 +1,15 @@
 const { Markup } = require('telegraf');
 
 module.exports = {
-    getKeyboard(actions) {
-        let keyboards = [];
-
-        for (let action in actions) {
-            keyboards.push(Markup.callbackButton(actions[action].text, action))
-        }
-
-        return Markup.inlineKeyboard(keyboards, { columns: 1 }).extra();
+    getInlineKeyboard(actions) {
+        return Markup.inlineKeyboard([
+            Markup.callbackButton('Покупка', 'buy'),
+            Markup.callbackButton('Продажа', 'sell')
+        ], { columns: 1 }).extra();
     },
-    getCharacterActionKeyboard() {
+    getKeyboard() {
         return Markup.keyboard([
-            '🎒 Инвентарь'
+            '⬅ Вернуться'
         ]).oneTime(true).resize().extra();
     }
 };

@@ -2,28 +2,29 @@ const path = require('path');
 const Scene = require('telegraf/scenes/base');
 
 const charactersModel = require(path.join(__basedir, 'models', 'characters'));
-
 const getZoneData = require(path.join(__basedir, 'utils', 'getZoneData'));
-
 const keyboards = require(path.join(__dirname, 'keyboards'));
 
-const gameZoneTrade = new Scene('gameZoneTrade');
+const gameZonesTrade = new Scene('gameZonesTrade');
 
-gameZoneTrade.enter(async (ctx) => {
+gameZonesTrade.enter(async (ctx) => {
     const character = await charactersModel.findById(ctx.session.character.id);
     const zoneData = await getZoneData(character);
 
-    await ctx.reply('.', keyboards.getCharacterActionKeyboard());
+    await ctx.reply('.', keyboards.getKeyboard());
     await ctx.replyWithPhoto({ source: zoneData.info.img });
-    await ctx.reply(zoneData.info.description, keyboards.getKeyboard(zoneData.actions));
+    await ctx.reply(zoneData.info.description, keyboards.getInlineKeyboard());
 
-    for (let action in zoneData.actions) {
-        gameZoneTrade.action(new RegExp(action), zoneData.actions[action].handler);
-    }
 });
 
-gameZoneTrade.hears('🎒 Инвентарь', async ctx => await ctx.scene.enter('characterInventory'));
+gameZonesTrade.hears('⬅ Вернуться', async ctx => {
+    await charactersModel.findByIdAndUpdate(ctx.session.character.id, {
+        zone: 'town'
+    });
 
-gameZoneTrade.leave((ctx) => ctx.session.scenes.previous = ctx.session.__scenes.current);
+    await ctx.scene.enter(ctx.session.scenes.previous);
+});
 
-module.exports = gameZoneTrade;
+gameZonesTrade.leave((ctx) => ctx.session.scenes.previous = ctx.session.__scenes.current);
+
+module.exports = gameZonesTrade;

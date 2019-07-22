@@ -5,8 +5,8 @@ const account = require(path.join(__dirname, 'account'));
 const { characterCreate, characterPlay, characterDelete, characterInventory } = require(path.join(__dirname, 'character'));
 const game = require(path.join(__dirname, 'game'));
 const gameEventsStart = require(path.join(__dirname, 'game', 'events', 'start'));
-const gameZoneTown = require(path.join(__dirname, 'game', 'zone', 'town'));
-const gameZoneTrade = require(path.join(__dirname, 'game', 'zone', 'trade'));
+const gameZonesTown = require(path.join(__dirname, 'game', 'zones', 'town'));
+const gameZonesTrade = require(path.join(__dirname, 'game', 'zones', 'trade'));
 
 module.exports = () => {
     return new Stage([
@@ -17,7 +17,7 @@ module.exports = () => {
         characterInventory,
         game,
         gameEventsStart,
-        gameZoneTown,
-        gameZoneTrade
+        gameZonesTown,
+        gameZonesTrade
     ]);
 };

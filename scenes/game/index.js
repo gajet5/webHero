@@ -17,18 +17,15 @@ game.enter(async (ctx) => {
 
     switch (character.zone) {
         case 'town':
-            await ctx.scene.enter('gameZoneTown');
+            await ctx.scene.enter('gameZonesTown');
+            break;
+        case 'trade':
+            await ctx.scene.enter('gameZonesTrade');
             break;
         default:
             await ctx.reply(`Игровой зоны не существует`);
             await ctx.scene.enter('account');
     }
-
-    // if (!character.zone) {
-    //     await ctx.scene.enter('gameEventsStart');
-    // } else {
-    //     await ctx.scene.enter('game');
-    // }
 
 });
 
