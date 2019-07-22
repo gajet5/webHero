@@ -8,6 +8,11 @@ module.exports = {
         img: path.join(__dirname, '..', 'media', 'img', 'ti_merchant.jpg'),
         description: 'Описание торговой прощади города'
     },
+    buylist: {
+        armor: [],
+        weapon: [],
+        etc: ['1']
+    },
     actions: {
         buyItems: {
             text: 'Купить',

@@ -43,7 +43,7 @@ module.exports = {
         });
         ctx.session.character.id = character.id;
 
-        await ctx.reply(characterCreateMessage.chacterIsCreated(stats));
+        ctx.session.messages.push(await ctx.reply(characterCreateMessage.chacterIsCreated(stats)));
 
         await ctx.scene.enter('game');
     }

@@ -1,14 +1,15 @@
 const path = require('path');
 const Scene = require('telegraf/scenes/base');
 
+const sceneCleaner = require(path.join(__basedir, 'utils', 'sceneCleaner'));
 const accountsModel = require(path.join(__basedir, 'models', 'accounts'));
 const commands = require(path.join(__dirname, 'commands'));
 const keyboards = require(path.join(__dirname, 'keyboards'));
 const accountMessage = require(path.join(__basedir, 'data', 'dialogues', 'account'));
 
-const start = new Scene('account');
+const account = new Scene('account');
 
-start.enter(async (ctx) => {
+account.enter(async (ctx) => {
     if (ctx.from) {
         let account = await accountsModel.findOne({
             userId: ctx.from.id
@@ -26,15 +27,20 @@ start.enter(async (ctx) => {
         ctx.session.account.id = account.id;
 
         if (account.haveCharacter) {
-            await ctx.reply(accountMessage.alreadyRegistered(account.username), keyboards.getKeyboard(account.haveCharacter));
+            ctx.session.messages.push(await ctx.reply(accountMessage.alreadyRegistered(account.username), keyboards.getKeyboard(account.haveCharacter)));
         } else {
-            await ctx.reply(accountMessage.newUser(account.firsName, account.username), keyboards.getKeyboard(account.haveCharacter));
+            ctx.session.messages.push(await ctx.reply(accountMessage.newUser(account.firsName, account.username), keyboards.getKeyboard(account.haveCharacter)));
         }
     }
 });
 
-start.action(/characterCreate/, commands.swichScene);
-start.action(/characterPlay/, commands.swichScene);
-start.action(/characterDelete/, commands.swichScene);
+account.action(/characterCreate/, commands.swichScene);
+account.action(/characterPlay/, commands.swichScene);
+account.action(/characterDelete/, commands.swichScene);
 
-module.exports = start;
+account.leave((ctx) => {
+    ctx.session.scenes.previous = ctx.session.__scenes.current;
+    sceneCleaner(ctx);
+});
+
+module.exports = account;

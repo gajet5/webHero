@@ -3,6 +3,10 @@ module.exports = async (ctx, next) => {
         ctx.session.scenes = {};
     }
 
+    if (!ctx.session.messages) {
+        ctx.session.messages = [];
+    }
+
     if (!ctx.session.user) {
         ctx.session.user = {};
     }
