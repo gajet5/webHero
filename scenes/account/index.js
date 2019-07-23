@@ -1,8 +1,10 @@
 const path = require('path');
 const Scene = require('telegraf/scenes/base');
 
-const sceneCleaner = require(path.join(__basedir, 'utils', 'sceneCleaner'));
 const accountsModel = require(path.join(__basedir, 'models', 'accounts'));
+
+const sceneCleaner = require(path.join(__basedir, 'utils', 'sceneCleaner'));
+
 const commands = require(path.join(__dirname, 'commands'));
 const keyboards = require(path.join(__dirname, 'keyboards'));
 const accountMessage = require(path.join(__basedir, 'data', 'dialogues', 'account'));
@@ -27,9 +29,9 @@ account.enter(async (ctx) => {
         ctx.session.account.id = account.id;
 
         if (account.haveCharacter) {
-            ctx.session.messages.push(await ctx.reply(accountMessage.alreadyRegistered(account.username), keyboards.getKeyboard(account.haveCharacter)));
+            await ctx.reply(accountMessage.alreadyRegistered(account.username), keyboards.getKeyboard(account.haveCharacter));
         } else {
-            ctx.session.messages.push(await ctx.reply(accountMessage.newUser(account.firsName, account.username), keyboards.getKeyboard(account.haveCharacter)));
+            await ctx.reply(accountMessage.newUser(account.firsName, account.username), keyboards.getKeyboard(account.haveCharacter));
         }
     }
 });

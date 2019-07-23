@@ -7,6 +7,7 @@ const stage = require(path.join(__basedir, 'scenes'))();
 
 const initUserMiddleware = require(path.join(__basedir, 'middlewares', 'initUser'));
 const msgRegisterationMiddleware = require(path.join(__basedir, 'middlewares', 'msgRegisteration'));
+const replyDecoratorMiddleware = require(path.join(__basedir, 'middlewares', 'replyDecorator'));
 
 module.exports = {
     createTlgBot() {
@@ -19,6 +20,7 @@ module.exports = {
         Bot.use(stage.middleware());
         Bot.use(initUserMiddleware);
         Bot.use(msgRegisterationMiddleware);
+        Bot.use(replyDecoratorMiddleware);
 
         if (config.telegram.log) {
             Bot.use(Telegraf.log());

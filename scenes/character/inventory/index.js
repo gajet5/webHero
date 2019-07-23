@@ -2,6 +2,7 @@ const path = require('path');
 const Scene = require('telegraf/scenes/base');
 
 const sceneCleaner = require(path.join(__basedir, 'utils', 'sceneCleaner'));
+
 const charactersModel = require(path.join(__basedir, 'models', 'characters'));
 const charactersInventoryModel = require(path.join(__basedir, 'models', 'charactersInventory'));
 

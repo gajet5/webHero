@@ -4,6 +4,5 @@ module.exports = (ctx, next) => {
     } else if (ctx.update.message) {
         ctx.session.messages.push(ctx.update.message);
     }
-    console.log(ctx.update.message.reply_to_message);
     next();
 };
