@@ -15,7 +15,6 @@ gameZonesTrade.enter(async (ctx) => {
     ctx.session.messages.push(await ctx.reply('.', keyboards.getKeyboard()));
     ctx.session.messages.push(await ctx.replyWithPhoto({ source: zoneData.info.img }));
     ctx.session.messages.push(await ctx.reply(zoneData.info.description, keyboards.getInlineKeyboard()));
-
 });
 
 gameZonesTrade.hears('⬅ Вернуться', async ctx => {

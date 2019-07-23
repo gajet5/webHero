@@ -4,7 +4,7 @@ const Chance = require('chance');
 const accountsModel = require(path.join(__basedir, 'models', 'accounts'));
 const charactersModel = require(path.join(__basedir, 'models', 'characters'));
 
-const characterCreateMessage = require(path.join(__basedir, 'data', 'dialogues', 'character', 'create'));
+const keyboards = require(path.join(__dirname, 'keyboards'));
 
 module.exports = {
     async getStats(ctx) {
@@ -43,8 +43,13 @@ module.exports = {
         });
         ctx.session.character.id = character.id;
 
-        await ctx.reply(characterCreateMessage.chacterIsCreated(stats));
-
-        await ctx.scene.enter('game');
+        ctx.session.messages.push(await ctx.reply(`
+Ваш интилект ${ stats.int }
+Ваша сила ${ stats.str }
+Ваша телосложение ${ stats.con }
+Ваша сила разума ${ stats.men }
+Ваш локовсть ${ stats.dex }
+Ваше везение ${ stats.luck }
+        `, keyboards.getGameAccountKeyboard()));
     }
 };

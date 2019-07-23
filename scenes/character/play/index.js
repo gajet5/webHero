@@ -1,15 +1,18 @@
 const path = require('path');
 const Scene = require('telegraf/scenes/base');
 
+const sceneCleaner = require(path.join(__basedir, 'utils', 'sceneCleaner'));
+
 const charactersModel = require(path.join(__basedir, 'models', 'characters'));
 
-const characterPlay = new Scene('characterPlay');
+module.exports = new Scene('characterPlay')
+    .enter(async (ctx) => {
+        const character = await charactersModel.findOne({ accountId: ctx.session.account.id });
+        ctx.session.character.id = character.id;
 
-characterPlay.enter(async (ctx) => {
-    const character = await charactersModel.findOne({ accountId: ctx.session.account.id });
-    ctx.session.character.id = character.id;
-
-    await ctx.scene.enter('game');
-});
-
-module.exports = characterPlay;
+        await ctx.scene.enter('gameZonesRouter');
+    })
+    .leave((ctx) => {
+        ctx.session.scenes.previous = ctx.session.__scenes.current;
+        sceneCleaner(ctx);
+    });

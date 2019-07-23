@@ -3,8 +3,9 @@ const { Markup } = require('telegraf');
 module.exports = {
     getInlineKeyboard(actions) {
         return Markup.inlineKeyboard([
-            Markup.callbackButton('Покупка', 'gameZonesTradeBuy'),
-            Markup.callbackButton('Продажа', 'gameZonesTradeSell')
+            Markup.callbackButton('Покупка', 'armor'),
+            Markup.callbackButton('Продажа', 'sell'),
+            Markup.callbackButton('Продажа', 'sell')
         ], { columns: 1 }).extra();
     },
     getKeyboard() {

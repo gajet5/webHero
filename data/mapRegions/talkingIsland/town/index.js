@@ -14,25 +14,25 @@ module.exports = {
                 await charactersModel.findByIdAndUpdate(ctx.session.character.id, {
                     zone: 'trade'
                 });
-                await ctx.scene.enter('game');
+                await ctx.scene.enter('gameScenesRouter');
             }
         },
         getInformations: {
             text: 'Распросить местных',
             handler: async (ctx) => {
-                ctx.reply(`В стадии разработки`);
+                await ctx.reply(`В стадии разработки`);
             }
         },
         goHunting: {
             text: 'Охота',
             handler: async (ctx) => {
-                ctx.reply(`В стадии разработки`);
+                await ctx.reply(`В стадии разработки`);
             }
         },
         goAnotherTown: {
             text: 'Отправиться в другой город',
             handler: async(ctx) => {
-                ctx.reply(`В стадии разработки`);
+                await ctx.reply(`В стадии разработки`);
             }
         }
     }

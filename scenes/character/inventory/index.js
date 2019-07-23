@@ -8,25 +8,20 @@ const charactersInventoryModel = require(path.join(__basedir, 'models', 'charact
 
 const keyboards = require(path.join(__dirname, 'keyboards'));
 
-const characterInventory = new Scene('characterInventory');
+module.exports = new Scene('characterInventory')
+    .enter(async (ctx) => {
+        const character = await charactersModel.findOne({ accountId: ctx.session.account.id });
+        const invntory = await charactersInventoryModel.find({ ownerId: character.id });
 
-characterInventory.enter(async (ctx) => {
-    const character = await charactersModel.findOne({ accountId: ctx.session.account.id });
-    const invntory = await charactersInventoryModel.find({ ownerId: character.id });
-    
-    if (!invntory.length){
-        ctx.session.messages.push(await ctx.reply('Инвентарь пуст', keyboards.getCloseInventaryKeyboard()));
-        return;
-    }
+        if (!invntory.length) {
+            ctx.session.messages.push(await ctx.reply('Инвентарь пуст', keyboards.getCloseInventaryKeyboard()));
+            return;
+        }
 
-    ctx.session.messages.push(await ctx.reply('Вещи в инветате', keyboards.getCloseInventaryKeyboard()));
-});
-
-characterInventory.hears('❌ Закрыть инвентарь', async ctx => await ctx.scene.enter(ctx.session.scenes.previous));
-
-characterInventory.leave((ctx) => {
-    ctx.session.scenes.previous = ctx.session.__scenes.current;
-    sceneCleaner(ctx);
-});
-
-module.exports = characterInventory;
+        ctx.session.messages.push(await ctx.reply('Вещи в инветате', keyboards.getCloseInventaryKeyboard()));
+    })
+    .hears('❌ Закрыть инвентарь', async ctx => await ctx.scene.enter(ctx.session.scenes.previous))
+    .leave((ctx) => {
+        ctx.session.scenes.previous = ctx.session.__scenes.current;
+        sceneCleaner(ctx);
+    });

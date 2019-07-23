@@ -8,19 +8,21 @@ const stage = require(path.join(__basedir, 'scenes'))();
 const initUserMiddleware = require(path.join(__basedir, 'middlewares', 'initUser'));
 const msgRegisterationMiddleware = require(path.join(__basedir, 'middlewares', 'msgRegisteration'));
 const replyDecoratorMiddleware = require(path.join(__basedir, 'middlewares', 'replyDecorator'));
+const sceneRouterMiddleware = require(path.join(__basedir, 'middlewares', 'sceneRouter'));
 
 module.exports = {
     createTlgBot() {
         const Bot = new Telegraf(config.telegram.TOKEN);
 
         Bot.use((new TlgfLocalSession({
-            database: path.join(__basedir, 'sessions', 'index.json')
+            database: path.join(__basedir, 'sessions', 'router.js.json')
         })).middleware());
 
         Bot.use(stage.middleware());
         Bot.use(initUserMiddleware);
         Bot.use(msgRegisterationMiddleware);
         Bot.use(replyDecoratorMiddleware);
+        Bot.use(sceneRouterMiddleware);
 
         if (config.telegram.log) {
             Bot.use(Telegraf.log());
