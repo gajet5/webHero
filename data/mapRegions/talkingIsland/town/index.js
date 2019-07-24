@@ -14,7 +14,7 @@ module.exports = {
                 await charactersModel.findByIdAndUpdate(ctx.session.character.id, {
                     zone: 'trade'
                 });
-                await ctx.scene.enter('gameScenesRouter');
+                await ctx.scene.enter('gameZonesRouter');
             }
         },
         getInformations: {

@@ -22,7 +22,10 @@ module.exports = new Scene('characterInventory')
 
         ctx.session.messages.push(...msgs);
     })
-    .hears('❌ Закрыть инвентарь', async ctx => await ctx.scene.enter(ctx.session.scenes.previous))
+    .hears('❌ Закрыть инвентарь', async ctx => {
+        ctx.session.messages.push(ctx.update.message);
+        await ctx.scene.enter(ctx.session.scenes.previous);
+    })
     .leave((ctx) => {
         ctx.session.scenes.previous = ctx.session.__scenes.current;
         sceneCleaner(ctx);
