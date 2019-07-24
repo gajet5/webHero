@@ -3,7 +3,7 @@ module.exports = (ctx) => {
         try {
             ctx.deleteMessage(id);
         } catch (e) {
-            console.log(error)
+            console.log(error.message)
         }
     }
 

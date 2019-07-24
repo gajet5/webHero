@@ -5,11 +5,12 @@ const accountsModel = require(path.join(__basedir, 'models', 'accounts'));
 const charactersModel = require(path.join(__basedir, 'models', 'characters'));
 
 const keyboards = require(path.join(__dirname, 'keyboards'));
+const messages = require(path.join(__dirname, 'messages'));
 
 module.exports = {
     async getStats(ctx) {
+        const msgs = [];
         const chance = new Chance();
-
         const stats = {
             int: 0,
             str: 0,
@@ -38,18 +39,14 @@ module.exports = {
             accountId: account,
             stats
         });
+
         await account.updateOne({
             haveCharacter: true
         });
+
         ctx.session.character.id = character.id;
 
-        ctx.session.messages.push(await ctx.reply(`
-Ваш интилект ${ stats.int }
-Ваша сила ${ stats.str }
-Ваша телосложение ${ stats.con }
-Ваша сила разума ${ stats.men }
-Ваш локовсть ${ stats.dex }
-Ваше везение ${ stats.luck }
-        `, keyboards.getGameAccountKeyboard()));
+        msgs.push(ctx.session.messages.push(await ctx.reply(messages.stats(stats), keyboards.getGameAccountKeyboard())));
+        ctx.session.messages.push(...msgs);
     }
 };

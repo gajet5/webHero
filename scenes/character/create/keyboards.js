@@ -8,14 +8,8 @@ module.exports = {
     },
     getGameAccountKeyboard() {
         return Markup.inlineKeyboard([
-            Markup.callbackButton('Играть', JSON.stringify({
-                command: 'switchScene',
-                sceneName: 'gameZonesRouter'
-            })),
-            Markup.callbackButton('Вернуться назад', JSON.stringify({
-                command: 'switchScene',
-                sceneName: 'account'
-            })),
+            Markup.callbackButton('Играть', 'gameZonesRouter'),
+            Markup.callbackButton('Вернуться назад', 'account'),
         ]).extra();
     }
 };
