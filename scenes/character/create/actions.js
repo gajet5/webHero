@@ -46,7 +46,7 @@ module.exports = {
 
         ctx.session.character.id = character.id;
 
-        msgs.push(ctx.session.messages.push(await ctx.reply(messages.stats(stats), keyboards.getGameAccountKeyboard())));
+        msgs.push(await ctx.reply(messages.stats(stats), keyboards.getGameAccountKeyboard()));
         ctx.session.messages.push(...msgs);
     }
 };

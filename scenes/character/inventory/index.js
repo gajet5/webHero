@@ -16,10 +16,10 @@ module.exports = new Scene('characterInventory')
 
         if (!invntory.length) {
             msgs.push(await ctx.reply('Инвентарь пуст', keyboards.getCloseInventaryKeyboard()));
-            return;
+        } else {
+            msgs.push(await ctx.reply('Вещи в инветате', keyboards.getCloseInventaryKeyboard()));
         }
 
-        msgs.push(await ctx.reply('Вещи в инветате', keyboards.getCloseInventaryKeyboard()));
         ctx.session.messages.push(...msgs);
     })
     .hears('❌ Закрыть инвентарь', async ctx => await ctx.scene.enter(ctx.session.scenes.previous))
