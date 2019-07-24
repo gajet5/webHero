@@ -5,7 +5,7 @@ module.exports = {
         let keyboards = [];
 
         for (let action in actions) {
-            keyboards.push(Markup.callbackButton(actions[action].text, action))
+            keyboards.push(Markup.callbackButton(actions[action], action))
         }
 
         return Markup.inlineKeyboard(keyboards, { columns: 1 }).extra();
