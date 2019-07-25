@@ -12,18 +12,19 @@ module.exports = new Scene('gameZonesTrade')
         const character = await charactersModel.findById(ctx.session.character.id);
         const zoneData = await getZoneData(character);
 
-        msgs.push(await ctx.reply('.', keyboards.getKeyboard()));
+        msgs.push(await ctx.reply('.', keyboards.getBackKeyboard()));
         msgs.push(await ctx.replyWithPhoto({ source: zoneData.info.img }));
         msgs.push(await ctx.reply(zoneData.info.description, keyboards.getInlineKeyboard()));
 
         ctx.session.messages.push(...msgs);
     })
+    .action(/gameZonesTradeBuy|gameZonesTradeSell/, ctx => ctx.scene.enter(ctx.callbackQuery.data))
     .hears('⬅ Вернуться', async ctx => {
         ctx.session.messages.push(ctx.update.message);
         await charactersModel.findByIdAndUpdate(ctx.session.character.id, {
             zone: 'town'
         });
-        await ctx.scene.enter(ctx.session.scenes.previous);
+        await ctx.scene.enter('gameZonesRouter');
     })
     .leave((ctx) => {
         ctx.session.scenes.previous = ctx.session.__scenes.current;

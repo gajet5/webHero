@@ -7,7 +7,7 @@ module.exports = {
             Markup.callbackButton('Продажа', 'gameZonesTradeSell')
         ], { columns: 1 }).extra();
     },
-    getKeyboard() {
+    getBackKeyboard() {
         return Markup.keyboard([
             '⬅ Вернуться'
         ]).oneTime(true).resize().extra();
