@@ -14,15 +14,17 @@ module.exports = {
         const buylist = zoneData.buylist[categoryName];
         const itemsList = [];
 
-        buylist.forEach(id => {
-            itemsList.push(itemsData[categoryName][id]);
+        buylist.forEach(value => {
+            const item = itemsData[categoryName][value];
+            item['id'] = value;
+            itemsList.push(item);
         });
 
         for (let item of itemsList) {
             ctx.session.messages.push(await ctx.reply(`
 Название: ${item.name}
 Цена: ${item.price}
-            `, keyboards.inspect(item)));
+            `, keyboards.inspect(item.id)));
         }
     },
     async buy(ctx) {

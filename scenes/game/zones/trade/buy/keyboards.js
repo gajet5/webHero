@@ -8,11 +8,11 @@ module.exports = {
             Markup.callbackButton('Остальное', 'etc')
         ], { columns: 1 }).extra();
     },
-    inspect(item) {
+    inspect(id) {
         return Markup.inlineKeyboard([
             Markup.callbackButton('Осмотреть', JSON.stringify({
-                action: 'inspect',
-                item
+                act: 'inspect',
+                id
             })),
         ], { columns: 1 }).extra();
     },
