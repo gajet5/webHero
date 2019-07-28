@@ -5,7 +5,7 @@ const path = require('path');
 const config = require(path.join(__basedir, 'config'));
 const stage = require(path.join(__basedir, 'scenes'))();
 
-const initUserMiddleware = require(path.join(__basedir, 'middlewares', 'initUser'));
+const initSessionMiddleware = require(path.join(__basedir, 'middlewares', 'initSession'));
 const msgRegisterationMiddleware = require(path.join(__basedir, 'middlewares', 'msgRegisteration'));
 
 module.exports = {
@@ -17,7 +17,7 @@ module.exports = {
         })).middleware());
 
         Bot.use(stage.middleware());
-        Bot.use(initUserMiddleware);
+        Bot.use(initSessionMiddleware);
         Bot.use(msgRegisterationMiddleware);
 
         if (config.telegram.log) {

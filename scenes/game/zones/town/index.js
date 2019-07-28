@@ -8,7 +8,7 @@ const keyboards = require(path.join(__dirname, 'keyboards'));
 const actions = require(path.join(__dirname, 'actions'));
 
 module.exports = new Scene('gameZonesTown')
-    .enter(async function(ctx) {
+    .enter(async (ctx) => {
         const msgs = [];
         const character = await charactersModel.findById(ctx.session.character.id);
         const zoneData = await getZoneData(character);

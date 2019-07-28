@@ -19,6 +19,10 @@ module.exports = async (ctx, next) => {
         ctx.session.character = {};
     }
 
+    if (!ctx.session.state) {
+        ctx.session.state = {};
+    }
+
     if (!ctx.session.__scenes.current) {
         await ctx.scene.enter('account');
         return;

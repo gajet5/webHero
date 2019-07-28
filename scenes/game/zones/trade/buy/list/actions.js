@@ -10,12 +10,11 @@ module.exports = {
     async showCategory(ctx) {
         const character = await charactersModel.findById(ctx.session.character.id);
         const zoneData = await getZoneData(character);
-        const categoryName = ctx.callbackQuery.data;
-        const buylist = zoneData.buylist[categoryName];
+        const buylist = zoneData.buylist[ctx.session.state.tradeBuyCategory];
         const itemsList = [];
 
         buylist.forEach(value => {
-            const item = itemsData[categoryName][value];
+            const item = itemsData[ctx.session.state.tradeBuyCategory][value];
             item['id'] = value;
             itemsList.push(item);
         });
@@ -26,8 +25,5 @@ module.exports = {
 Цена: ${item.price}
             `, keyboards.inspect(item.id)));
         }
-    },
-    async buy(ctx) {
-
     }
 };
