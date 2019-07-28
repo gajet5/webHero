@@ -3,10 +3,7 @@ const { Markup } = require('telegraf');
 module.exports = {
     inspect(id) {
         return Markup.inlineKeyboard([
-            Markup.callbackButton('Осмотреть', JSON.stringify({
-                act: 'inspect',
-                id
-            })),
+            Markup.callbackButton('Осмотреть', 'inspect'),
         ], { columns: 1 }).extra();
     },
     back() {

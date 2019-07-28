@@ -8,14 +8,6 @@ module.exports = {
             Markup.callbackButton('Остальное', 'etc')
         ], { columns: 1 }).extra();
     },
-    inspect(id) {
-        return Markup.inlineKeyboard([
-            Markup.callbackButton('Осмотреть', JSON.stringify({
-                act: 'inspect',
-                id
-            })),
-        ], { columns: 1 }).extra();
-    },
     back() {
         return Markup.keyboard([
             '⬅ Вернуться'
