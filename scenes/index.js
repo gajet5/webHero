@@ -5,6 +5,7 @@ module.exports = () => {
     return new Stage([
         require(path.join(__dirname, 'account')),
         ...require(path.join(__dirname, 'character')),
-        ...require(path.join(__dirname, 'game'))
+        ...require(path.join(__dirname, 'game')),
+        ...require(path.join(__dirname, 'item'))
     ]);
 };

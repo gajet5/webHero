@@ -1,7 +1,7 @@
 module.exports = {
     '1': {
         name: 'Меч Орков',
-        weaponType: 'SWORD',
+        type: 'SWORD',
         price: 41,
         stats: {
             pAtk: 8,
