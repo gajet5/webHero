@@ -6,7 +6,7 @@ const charactersModel = require(path.join(__basedir, 'models', 'characters'));
 const getZoneData = require(path.join(__basedir, 'utils', 'getZoneData'));
 const keyboards = require(path.join(__dirname, 'keyboards'));
 
-module.exports = new Scene('gameZonesTrade')
+module.exports = new Scene('gameZonesTradeWelcome')
     .enter(async (ctx) => {
         const msgs = [];
         const character = await charactersModel.findById(ctx.session.character.id);

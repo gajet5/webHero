@@ -28,12 +28,13 @@ module.exports = new Scene('gameZonesTradeBuyList')
             msgs.push(await ctx.reply(`
 Название: ${item.name}
 Цена: ${item.price}
-            `, keyboards.inspect(item.id)));
+            `, keyboards.actions(item.id)));
         }
 
         ctx.session.messages.push(...msgs);
     })
-    .action(/inspect/, actions.selectInspectItem)
+    .action(/insp/, actions.selectInspectItem)
+    .action(/buy/, actions.buyItem)
     .hears('⬅ Вернуться', async ctx => {
         ctx.session.messages.push(ctx.update.message);
         await ctx.scene.enter('gameZonesTradeBuy');

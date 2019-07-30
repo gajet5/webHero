@@ -1,12 +1,16 @@
 const { Markup } = require('telegraf');
 
 module.exports = {
-    inspect(id) {
+    actions(id) {
         return Markup.inlineKeyboard([
             Markup.callbackButton('Осмотреть', JSON.stringify({
-                act: 'inspect',
+                act: 'insp',
                 id
             })),
+            Markup.callbackButton('Buy', JSON.stringify({
+                act: 'buy',
+                id
+            }))
         ], { columns: 1 }).extra();
     },
     back() {
