@@ -2,7 +2,7 @@ const path = require('path');
 const Scene = require('telegraf/scenes/base');
 
 const sceneCleaner = require(path.join(__basedir, 'utils', 'sceneCleaner'));
-
+const itemsData = require(path.join(__basedir, 'data', 'items'));
 const charactersModel = require(path.join(__basedir, 'models', 'characters'));
 const charactersItemsModel = require(path.join(__basedir, 'models', 'charactersItems'));
 
@@ -11,13 +11,20 @@ const keyboards = require(path.join(__dirname, 'keyboards'));
 module.exports = new Scene('characterInventory')
     .enter(async (ctx) => {
         const msgs = [];
-        const character = await charactersModel.findOne({ accountId: ctx.session.account.id });
-        const invntory = await charactersItemsModel.find({ ownerId: character.id });
+        const character = await charactersModel.findById(ctx.session.character.id);
+        const inventory = await charactersItemsModel.find({ ownerId: character.id });
 
-        if (!invntory.length) {
+        if (!inventory.length) {
             msgs.push(await ctx.reply('Инвентарь пуст', keyboards.getCloseInventaryKeyboard()));
-        } else {
-            msgs.push(await ctx.reply('Вещи в инветате', keyboards.getCloseInventaryKeyboard()));
+            ctx.session.messages.push(...msgs);
+            return;
+        }
+
+        msgs.push(await ctx.reply('Вещи в инветате', keyboards.getCloseInventaryKeyboard()));
+
+        for (let charItem of inventory) {
+            const item = itemsData[charItem.category][charItem.itemId];
+            msgs.push(await ctx.reply(`${ item.name } - ${ charItem.count }`));
         }
 
         ctx.session.messages.push(...msgs);

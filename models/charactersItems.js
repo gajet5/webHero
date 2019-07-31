@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const CharactersItems = new Schema({
-    ownerID: {
+    ownerId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Characters',
         require: true
@@ -19,8 +19,7 @@ const CharactersItems = new Schema({
         type: String
     },
     count: {
-        type: Number,
-        default: 0
+        type: Number
     }
 });
 
