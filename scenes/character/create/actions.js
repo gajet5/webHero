@@ -3,6 +3,7 @@ const Chance = require('chance');
 
 const accountsModel = require(path.join(__basedir, 'models', 'accounts'));
 const charactersModel = require(path.join(__basedir, 'models', 'characters'));
+const charactersItemsModel = require(path.join(__basedir, 'models', 'charactersItems'));
 
 const keyboards = require(path.join(__dirname, 'keyboards'));
 const messages = require(path.join(__dirname, 'messages'));
@@ -42,6 +43,14 @@ module.exports = {
 
         await account.updateOne({
             haveCharacter: true
+        });
+
+        await charactersItemsModel.create({
+            ownerId: character,
+            itemId: 1,
+            category: 'etc',
+            type: 'null',
+            count: 0
         });
 
         ctx.session.character.id = character.id;
