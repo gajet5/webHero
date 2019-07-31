@@ -8,7 +8,7 @@ module.exports = {
     buylist: {
         weapons: ['1'],
         armors: [],
-        etc: ['1']
+        etc: ['2']
     }
 };
 

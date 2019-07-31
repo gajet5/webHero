@@ -7,7 +7,7 @@ module.exports = {
                 act: 'insp',
                 id
             })),
-            Markup.callbackButton('Buy', JSON.stringify({
+            Markup.callbackButton('Купить', JSON.stringify({
                 act: 'buy',
                 id
             }))

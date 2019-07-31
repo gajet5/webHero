@@ -1,4 +1,7 @@
-const path = require('path');
-
 module.exports = {
+    async buyItem(ctx) {
+        const data = JSON.parse(ctx.callbackQuery.data);
+        ctx.session.state.buyItemId = data.id;
+        await ctx.scene.enter('gameZonesItemBye');
+    }
 };

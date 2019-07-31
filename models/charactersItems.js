@@ -16,8 +16,7 @@ const CharactersItems = new Schema({
         require: true
     },
     type: {
-        type: String,
-        require: true
+        type: String
     },
     count: {
         type: Number,
