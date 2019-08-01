@@ -6,7 +6,7 @@ const sceneCleaner = require(path.join(__basedir, 'utils', 'sceneCleaner'));
 const keyboards = require(path.join(__dirname, 'keyboards'));
 const actions = require(path.join(__dirname, 'actions'));
 
-module.exports = new Scene('gameZonesItemBye')
+module.exports = new Scene('itemBuy')
     .enter(async function(ctx) {
         const msgs = [];
         const item = itemsData[ctx.session.state.tradeBuyCategory][ctx.session.state.buyItemId];

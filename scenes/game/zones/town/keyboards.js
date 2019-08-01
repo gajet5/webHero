@@ -1,7 +1,7 @@
 const { Markup } = require('telegraf');
 
 module.exports = {
-    getKeyboard(actions) {
+    options(actions) {
         let keyboards = [];
 
         for (let action in actions) {
@@ -10,7 +10,7 @@ module.exports = {
 
         return Markup.inlineKeyboard(keyboards, { columns: 1 }).extra();
     },
-    getCharacterActionKeyboard() {
+    characterAction() {
         return Markup.keyboard([
             '🎒 Инвентарь'
         ]).oneTime(true).resize().extra();

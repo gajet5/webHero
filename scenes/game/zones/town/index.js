@@ -13,16 +13,16 @@ module.exports = new Scene('gameZonesTown')
         const character = await charactersModel.findById(ctx.session.character.id);
         const zoneData = await getZoneData(character);
 
-        msgs.push(await ctx.reply('.', keyboards.getCharacterActionKeyboard()));
+        msgs.push(await ctx.reply('.', keyboards.characterAction()));
         msgs.push(await ctx.replyWithPhoto({ source: zoneData.info.img }));
-        msgs.push(await ctx.reply(zoneData.info.description, keyboards.getKeyboard(zoneData.actions)));
-
-        for (let actionName in zoneData.actions) {
-            module.exports.action(new RegExp(actionName), await actions[actionName]);
-        }
+        msgs.push(await ctx.reply(zoneData.info.description, keyboards.options(zoneData.actions)));
 
         ctx.session.messages.push(...msgs);
     })
+    .action(/getMerchants/, actions.getMerchants)
+    .action(/getInformations/, actions.getInformations)
+    .action(/goHunting/, actions.goHunting)
+    .action(/goAnotherTown/, actions.goAnotherTown)
     .hears('🎒 Инвентарь', async ctx => {
         ctx.session.messages.push(ctx.update.message);
         await ctx.scene.enter('characterInventory')

@@ -18,7 +18,7 @@ module.exports = new Scene('gameZonesTradeWelcome')
 
         ctx.session.messages.push(...msgs);
     })
-    .action(/gameZonesTradeBuy|gameZonesTradeSell/, ctx => ctx.scene.enter(ctx.callbackQuery.data))
+    .action(/gameZonesTradeBuyCategory|gameZonesTradeSell/, ctx => ctx.scene.enter(ctx.callbackQuery.data))
     .hears('⬅ Вернуться', async ctx => {
         ctx.session.messages.push(ctx.update.message);
         await charactersModel.findByIdAndUpdate(ctx.session.character.id, {

@@ -6,7 +6,7 @@ const sceneCleaner = require(path.join(__basedir, 'utils', 'sceneCleaner'));
 const keyboards = require(path.join(__dirname, 'keyboards'));
 const actions = require(path.join(__dirname, 'actions'));
 
-module.exports = new Scene('gameZonesItemInspect')
+module.exports = new Scene('itemInspect')
     .enter(async function(ctx) {
         const itemId = ctx.session.state.inspectItemId;
         const msgs = [];
