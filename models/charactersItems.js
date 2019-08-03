@@ -20,6 +20,15 @@ const CharactersItems = new Schema({
     },
     count: {
         type: Number
+    },
+    canSell: {
+        type: Boolean,
+        require: true
+    },
+    autoSell: {
+        type: Boolean,
+        default: false,
+        require: true
     }
 });
 

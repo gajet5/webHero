@@ -10,7 +10,7 @@ mongoose.connect(config.db.URL, {
 });
 
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
-mongoose.connection.on('disconnected', () => {
+mongoose.connection.once('disconnected', () => {
     console.log('Disconnected from MongoDB');
     process.exit(1);
 });

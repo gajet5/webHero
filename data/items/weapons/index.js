@@ -8,6 +8,10 @@ module.exports = {
             mAtk: 6,
             critRate: 8,
             pAtkSpd: 379
+        },
+        specifications: {
+            canSell: true,
+            autoSell: false
         }
     }
 };

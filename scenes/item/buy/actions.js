@@ -51,7 +51,9 @@ module.exports = {
                 itemId,
                 category,
                 type: item.type || 'null',
-                count: data.cnt
+                count: data.cnt,
+                autoSell: item.specifications.autoSell,
+                canSell: item.specifications.canSell
             });
         }
         msgs.push(await ctx.reply('Покупка совершена'));
