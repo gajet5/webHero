@@ -19,7 +19,14 @@ module.exports = new Scene('itemSellOne')
                 continue;
             }
 
-            msgs.push(await ctx.reply(`${itemsData[item.category][item.itemId]}`));
+            const itemForSell = itemsData[item.category][item.itemId];
+            const priceForSell = Math.round(itemForSell.price / 2);
+
+            msgs.push(await ctx.reply(`
+Name: ${ itemForSell.name }
+Count: ${ item.count }
+Price: ${ priceForSell }
+            `));
         }
 
         ctx.session.messages.push(...msgs);
