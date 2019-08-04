@@ -24,5 +24,4 @@ module.exports = new Scene('itemBuy')
     .leave((ctx) => {
         sceneCleaner(ctx);
         ctx.session.scenes.previous = ctx.session.__scenes.current;
-        delete ctx.session.state.buyItemId;
     });

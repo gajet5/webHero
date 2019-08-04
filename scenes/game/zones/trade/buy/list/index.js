@@ -37,7 +37,7 @@ module.exports = new Scene('gameZonesTradeBuyList')
     .action(/buy/, actions.buyItem)
     .hears('⬅ Вернуться', async ctx => {
         ctx.session.messages.push(ctx.update.message);
-        await ctx.scene.enter('gameZonesTradeBuy');
+        await ctx.scene.enter('gameZonesTradeBuyCategory');
     })
     .leave((ctx) => {
         sceneCleaner(ctx);

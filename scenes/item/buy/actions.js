@@ -39,10 +39,10 @@ module.exports = {
         });
 
         if (invItem) {
-            await invItem.update({
+            await invItem.updateOne({
                 count: invItem.count + data.cnt
             });
-            await invMoney.update({
+            await invMoney.updateOne({
                 count: money - moneyRequired
             });
         } else {

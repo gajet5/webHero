@@ -2,11 +2,27 @@ const path = require('path');
 const Scene = require('telegraf/scenes/base');
 
 const sceneCleaner = require(path.join(__basedir, 'utils', 'sceneCleaner'));
+const itemsData = require(path.join(__basedir, 'data', 'items'));
+const charactersItemsModel = require(path.join(__basedir, 'models', 'charactersItems'));
+
 const keyboards = require(path.join(__dirname, 'keyboards'));
 
 module.exports = new Scene('itemSellOne')
     .enter(async ctx => {
-        ctx.session.messages.push(await ctx.reply('Сцена продажи вещи по штучно', keyboards.back()));
+        const msgs = [];
+        const inventory = await charactersItemsModel.find({ ownerId: ctx.session.character.id });
+
+        msgs.push(await ctx.reply('Chouise item for sale.', keyboards.back()));
+
+        for (let item of inventory) {
+            if (!item.canSell) {
+                continue;
+            }
+
+            msgs.push(await ctx.reply(`${itemsData[item.category][item.itemId]}`));
+        }
+
+        ctx.session.messages.push(...msgs);
     })
     .hears('⬅ Вернуться', async ctx => {
         ctx.session.messages.push(ctx.update.message);

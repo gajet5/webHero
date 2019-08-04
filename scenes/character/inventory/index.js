@@ -3,7 +3,6 @@ const Scene = require('telegraf/scenes/base');
 
 const sceneCleaner = require(path.join(__basedir, 'utils', 'sceneCleaner'));
 const itemsData = require(path.join(__basedir, 'data', 'items'));
-const charactersModel = require(path.join(__basedir, 'models', 'characters'));
 const charactersItemsModel = require(path.join(__basedir, 'models', 'charactersItems'));
 
 const keyboards = require(path.join(__dirname, 'keyboards'));
@@ -11,8 +10,7 @@ const keyboards = require(path.join(__dirname, 'keyboards'));
 module.exports = new Scene('characterInventory')
     .enter(async (ctx) => {
         const msgs = [];
-        const character = await charactersModel.findById(ctx.session.character.id);
-        const inventory = await charactersItemsModel.find({ ownerId: character.id });
+        const inventory = await charactersItemsModel.find({ ownerId: ctx.session.character.id });
 
         if (!inventory.length) {
             msgs.push(await ctx.reply('Инвентарь пуст', keyboards.getCloseInventaryKeyboard()));

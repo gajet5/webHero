@@ -35,10 +35,9 @@ module.exports = new Scene('itemInspect')
     .action(/buy/, actions.buyItem)
     .hears('⬅ Вернуться', async ctx => {
         ctx.session.messages.push(ctx.update.message);
-        await ctx.scene.enter(ctx.session.scenes.previous);
+        await ctx.scene.enter('gameZonesTradeBuyList');
     })
     .leave((ctx) => {
         sceneCleaner(ctx);
         ctx.session.scenes.previous = ctx.session.__scenes.current;
-        delete ctx.session.state.inspectItemId;
     });
