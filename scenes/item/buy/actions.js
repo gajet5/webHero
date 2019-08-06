@@ -1,6 +1,5 @@
 const path = require('path');
 
-const charactersModel = require(path.join(__basedir, 'models', 'characters'));
 const charactersItemsModel = require(path.join(__basedir, 'models', 'charactersItems'));
 const itemsData = require(path.join(__basedir, 'data', 'items'));
 
@@ -8,20 +7,20 @@ module.exports = {
     async buyItem(ctx) {
         const msgs = [];
         const data = JSON.parse(ctx.callbackQuery.data);
-        const character = await charactersModel.findById(ctx.session.character.id);
-        const category = ctx.session.state.tradeBuyCategory;
+        const character = ctx.session.character.id;
+        const category = ctx.session.state.buyItemCategory;
         const itemId = ctx.session.state.buyItemId;
         const item = itemsData[category][itemId];
 
         let money = 0;
-        let invMoney = await charactersItemsModel.findOne({
-            ownerId: character,
+        let characterMoney = await charactersItemsModel.findOne({
+            owner: character,
             itemId: '1',
             category: 'etc'
         });
 
-        if (invMoney) {
-            money = invMoney.count;
+        if (characterMoney) {
+            money = characterMoney.count;
         }
 
         const moneyRequired = data.cnt * item.price;
@@ -33,7 +32,7 @@ module.exports = {
         }
 
         const invItem = await charactersItemsModel.findOne({
-            ownerId: character,
+            owner: character,
             itemId,
             category
         });
@@ -42,12 +41,12 @@ module.exports = {
             await invItem.updateOne({
                 count: invItem.count + data.cnt
             });
-            await invMoney.updateOne({
+            await characterMoney.updateOne({
                 count: money - moneyRequired
             });
         } else {
             await charactersItemsModel.create({
-                ownerId: character,
+                owner: character,
                 itemId,
                 category,
                 type: item.type || 'null',

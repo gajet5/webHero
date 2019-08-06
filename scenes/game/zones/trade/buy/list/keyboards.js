@@ -4,11 +4,11 @@ module.exports = {
     actions(id) {
         return Markup.inlineKeyboard([
             Markup.callbackButton('Осмотреть', JSON.stringify({
-                act: 'insp',
+                ac: 'ins',
                 id
             })),
             Markup.callbackButton('Купить', JSON.stringify({
-                act: 'buy',
+                ac: 'buy',
                 id
             }))
         ], { columns: 1 }).extra();

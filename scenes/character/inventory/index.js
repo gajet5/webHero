@@ -10,7 +10,7 @@ const keyboards = require(path.join(__dirname, 'keyboards'));
 module.exports = new Scene('characterInventory')
     .enter(async (ctx) => {
         const msgs = [];
-        const inventory = await charactersItemsModel.find({ ownerId: ctx.session.character.id });
+        const inventory = await charactersItemsModel.find({ owner: ctx.session.character.id });
 
         if (!inventory.length) {
             msgs.push(await ctx.reply('Инвентарь пуст', keyboards.getCloseInventaryKeyboard()));
@@ -22,7 +22,7 @@ module.exports = new Scene('characterInventory')
 
         for (let charItem of inventory) {
             const item = itemsData[charItem.category][charItem.itemId];
-            msgs.push(await ctx.reply(`${ item.name } - ${ charItem.count }`));
+            msgs.push(await ctx.reply(`${ item.name } - ${ charItem.count } шт.`));
         }
 
         ctx.session.messages.push(...msgs);

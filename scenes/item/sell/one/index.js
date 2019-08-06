@@ -1,36 +1,25 @@
 const path = require('path');
 const Scene = require('telegraf/scenes/base');
 
-const sceneCleaner = require(path.join(__basedir, 'utils', 'sceneCleaner'));
 const itemsData = require(path.join(__basedir, 'data', 'items'));
-const charactersItemsModel = require(path.join(__basedir, 'models', 'charactersItems'));
-
+const sceneCleaner = require(path.join(__basedir, 'utils', 'sceneCleaner'));
 const keyboards = require(path.join(__dirname, 'keyboards'));
+const actions = require(path.join(__dirname, 'actions'));
 
 module.exports = new Scene('itemSellOne')
-    .enter(async ctx => {
+    .enter(async function(ctx) {
         const msgs = [];
-        const inventory = await charactersItemsModel.find({ ownerId: ctx.session.character.id });
+        const item = itemsData[ctx.session.state.sellItemCategory][ctx.session.state.sellItemId];
 
-        msgs.push(await ctx.reply('Chouise item for sale.', keyboards.back()));
-
-        for (let item of inventory) {
-            if (!item.canSell) {
-                continue;
-            }
-
-            const itemForSell = itemsData[item.category][item.itemId];
-            const priceForSell = Math.round(itemForSell.price / 2);
-
-            msgs.push(await ctx.reply(`
-Name: ${ itemForSell.name }
-Count: ${ item.count }
-Price: ${ priceForSell }
-            `));
-        }
+        msgs.push(await ctx.reply(`
+Выюрано: ${item.name}
+В наличие: ${ctx.session.state.sellItemCount} 
+        `, keyboards.back()));
+        msgs.push(await ctx.reply(`Сколько продаём?`, keyboards.count()));
 
         ctx.session.messages.push(...msgs);
     })
+    .action(/sell/, actions.buyItem)
     .hears('⬅ Вернуться', async ctx => {
         ctx.session.messages.push(ctx.update.message);
         await ctx.scene.enter(ctx.session.scenes.previous);

@@ -7,10 +7,14 @@ module.exports = {
         ]).oneTime(true).resize().extra();
     },
 
-    selectOption() {
+    sellItem(id, ct, cn) {
         return Markup.inlineKeyboard([
-            Markup.callbackButton('Продать вещь', 'sellOne'),
-            Markup.callbackButton('Продать хлам', 'sellMany')
+            Markup.callbackButton('Продать', JSON.stringify({
+                ac: 'sell',
+                id,
+                ct,
+                cn
+            })),
         ], { columns: 1 }).extra();
-    },
+    }
 };

@@ -10,7 +10,7 @@ module.exports = new Scene('itemInspect')
     .enter(async function(ctx) {
         const itemId = ctx.session.state.inspectItemId;
         const msgs = [];
-        const item = itemsData[ctx.session.state.tradeBuyCategory][itemId];
+        const item = itemsData[ctx.session.state.buyItemCategory][itemId];
 
         msgs.push(await ctx.reply(`
 Название: ${item.name}

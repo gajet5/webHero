@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const CharactersItems = new Schema({
-    ownerId: {
+    owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Characters',
         require: true

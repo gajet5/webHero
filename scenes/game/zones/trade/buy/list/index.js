@@ -13,11 +13,11 @@ module.exports = new Scene('gameZonesTradeBuyList')
         const msgs = [];
         const character = await charactersModel.findById(ctx.session.character.id);
         const zoneData = await getZoneData(character);
-        const buylist = zoneData.buylist[ctx.session.state.tradeBuyCategory];
+        const buylist = zoneData.buylist[ctx.session.state.buyItemCategory];
         const itemsList = [];
 
         buylist.forEach(value => {
-            const item = itemsData[ctx.session.state.tradeBuyCategory][value];
+            const item = itemsData[ctx.session.state.buyItemCategory][value];
             item['id'] = value;
             itemsList.push(item);
         });
@@ -33,7 +33,7 @@ module.exports = new Scene('gameZonesTradeBuyList')
 
         ctx.session.messages.push(...msgs);
     })
-    .action(/insp/, actions.selectInspectItem)
+    .action(/ins/, actions.selectInspectItem)
     .action(/buy/, actions.buyItem)
     .hears('⬅ Вернуться', async ctx => {
         ctx.session.messages.push(ctx.update.message);

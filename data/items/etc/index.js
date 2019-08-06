@@ -9,7 +9,7 @@ module.exports = {
     },
     '2': {
         name: 'Целебное зелье',
-        price: 0,
+        price: 5,
         specifications: {
             canSell: true,
             autoSell: false

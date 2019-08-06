@@ -4,7 +4,7 @@ const charactersItemsModel = require(path.join(__basedir, 'models', 'charactersI
 module.exports = {
     async sellTrash(ctx) {
         const items = await charactersItemsModel.find({
-            ownerId: ctx.session.character.id,
+            owner: ctx.session.character.id,
         });
 
         for (let item of items) {

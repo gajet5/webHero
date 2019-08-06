@@ -9,7 +9,7 @@ const actions = require(path.join(__dirname, 'actions'));
 module.exports = new Scene('itemBuy')
     .enter(async function(ctx) {
         const msgs = [];
-        const item = itemsData[ctx.session.state.tradeBuyCategory][ctx.session.state.buyItemId];
+        const item = itemsData[ctx.session.state.buyItemCategory][ctx.session.state.buyItemId];
 
         msgs.push(await ctx.reply(`Вы выбрали: ${item.name}`, keyboards.back()));
         msgs.push(await ctx.reply(`Сколько нужно?`, keyboards.count()));

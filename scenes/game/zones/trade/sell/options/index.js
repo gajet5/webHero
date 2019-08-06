@@ -13,7 +13,8 @@ module.exports = new Scene('gameZonesTradeSellOptions')
 
         ctx.session.messages.push(...msgs);
     })
-    .action(/itemSellOne|itemSellMany/, ctx => ctx.scene.enter(ctx.callbackQuery.data))
+    .action(/sellOne/, ctx => ctx.scene.enter('gameZonesTradeSellList'))
+    .action(/sellMany/, ctx => ctx.scene.enter('itemSellMany'))
     .hears('⬅ Вернуться', async ctx => {
         ctx.session.messages.push(ctx.update.message);
         await ctx.scene.enter('gameZonesTradeWelcome');

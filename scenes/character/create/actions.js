@@ -37,7 +37,7 @@ module.exports = {
 
         let account = await accountsModel.findById(ctx.session.account.id);
         let character = await charactersModel.create({
-            accountId: account,
+            account: account,
             stats
         });
 
@@ -46,7 +46,7 @@ module.exports = {
         });
 
         await charactersItemsModel.create({
-            ownerId: character,
+            owner: character,
             itemId: 1,
             category: 'etc',
             type: 'null',
