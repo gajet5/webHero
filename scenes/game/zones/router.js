@@ -20,6 +20,9 @@ module.exports = new Scene('gameZonesRouter')
             case 'trade':
                 await ctx.scene.enter('gameZonesTradeWelcome');
                 break;
+            case 'hunting':
+                await ctx.scene.enter('gameZonesHuntingWelcome');
+                break;
             default:
                 await ctx.reply(`Игровой зоны не существует`);
                 await ctx.scene.enter('account');

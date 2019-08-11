@@ -13,7 +13,7 @@ module.exports = new Scene('gameEventsStart')
         });
 
         await charactersModel.findByIdAndUpdate(ctx.session.character.id, {
-            mapRegion: 'talkingIsland',
+            mapRegion: 'adrin',
             zone: 'town'
         });
 

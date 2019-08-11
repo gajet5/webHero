@@ -1,24 +1,26 @@
 const path = require('path');
 const Scene = require('telegraf/scenes/base');
 
-const sceneCleaner = require(path.join(__basedir, 'utils', 'sceneCleaner'));
 const charactersModel = require(path.join(__basedir, 'models', 'characters'));
+const sceneCleaner = require(path.join(__basedir, 'utils', 'sceneCleaner'));
 const getZoneData = require(path.join(__basedir, 'utils', 'getZoneData'));
-const keyboards = require(path.join(__dirname, 'keyboards'));
 
-module.exports = new Scene('gameZonesTradeWelcome')
-    .enter(async (ctx) => {
+const keyboards = require(path.join(__dirname, 'keyboards'));
+const actions = require(path.join(__dirname, 'actions'));
+
+module.exports = new Scene('gameZonesHuntingWelcome')
+    .enter(async ctx => {
         const msgs = [];
         const character = await charactersModel.findById(ctx.session.character.id);
-        const zoneData = await getZoneData(character);
+        const zonesData = await getZoneData(character);
 
         msgs.push(await ctx.reply('.', keyboards.back()));
-        msgs.push(await ctx.replyWithPhoto({ source: zoneData.info.img }));
-        msgs.push(await ctx.reply(zoneData.info.description, keyboards.actions()));
+
+        msgs.push(await ctx.reply('Куда отправимся?', keyboards.getZones(zonesData.zones)));
 
         ctx.session.messages.push(...msgs);
     })
-    .action(/gameZonesTradeBuyCategory|gameZonesTradeSell/, ctx => ctx.scene.enter(ctx.callbackQuery.data))
+    .action(/go/, actions.goToZone)
     .hears('⬅ Вернуться', async ctx => {
         ctx.session.messages.push(ctx.update.message);
         await charactersModel.findByIdAndUpdate(ctx.session.character.id, {
@@ -26,7 +28,7 @@ module.exports = new Scene('gameZonesTradeWelcome')
         });
         await ctx.scene.enter('gameZonesRouter');
     })
-    .leave((ctx) => {
+    .leave(ctx => {
         ctx.session.scenes.previous = ctx.session.__scenes.current;
         sceneCleaner(ctx);
     });

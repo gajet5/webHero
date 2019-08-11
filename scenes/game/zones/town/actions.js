@@ -10,12 +10,15 @@ module.exports = {
         await ctx.scene.enter('gameZonesRouter');
     },
     async getInformations(ctx) {
-        await ctx.reply('In dev')
+        await ctx.reply('In dev');
     },
     async goHunting(ctx) {
-        await ctx.reply('In dev')
+        await charactersModel.findByIdAndUpdate(ctx.session.character.id, {
+            zone: 'hunting'
+        });
+        await ctx.scene.enter('gameZonesRouter');
     },
     async goAnotherTown(ctx) {
-        await ctx.reply('In dev')
+        await ctx.reply('In dev');
     }
 };

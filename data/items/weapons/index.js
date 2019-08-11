@@ -5,9 +5,7 @@ module.exports = {
         price: 41,
         stats: {
             pAtk: 8,
-            mAtk: 6,
-            critRate: 8,
-            pAtkSpd: 379
+            mAtk: 6
         },
         specifications: {
             canSell: true,

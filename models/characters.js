@@ -29,7 +29,7 @@ const Characters = new Schema({
     },
     mapRegion: {
         type: String,
-        default: 'talkingIsland'
+        default: 'adrin'
     },
     zone: {
         type: String,
