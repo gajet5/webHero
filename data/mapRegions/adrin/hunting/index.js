@@ -5,10 +5,12 @@ module.exports = {
                 name: 'Портовые стены',
                 description: 'Описание зоны'
             },
-            npcs: {
-                id: 1,
-                chance: 10
-            }
+            npcs: [
+                {
+                    id: 1,
+                    chance: 70
+                }
+            ]
         },
         2: {
             info: {

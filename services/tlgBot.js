@@ -31,10 +31,16 @@ module.exports = {
         if (config.telegram.debugCommands) {
             Bot.command('renew', async ctx => ctx.scene.reenter());
             Bot.command('exit', async ctx => ctx.scene.leave());
-            Bot.command('scene', async ctx => await ctx.reply(`Текущая сцена: ${ctx.session.__scenes.current}`));
+            Bot.command('scene', async ctx => ctx.session.messages.push(await ctx.reply(`Текущая сцена: ${ctx.session.__scenes.current}`)));
         }
 
-        Bot.start(async ctx => await ctx.scene.enter('account'));
+        Bot.start(async ctx => {
+            // if (/[H|h]unting/.test(ctx.session.__scenes.current)) {
+            //     ctx.session.messages.push(await ctx.reply('Действие недоступно.'));
+            //     return false;
+            // }
+            await ctx.scene.enter('account');
+        });
         return Bot.launch();
     }
 };

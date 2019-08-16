@@ -1,5 +1,5 @@
 module.exports = {
-    characters: {
+    character: {
         rateHp: 10,
         rateMp: 5
     },

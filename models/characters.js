@@ -39,10 +39,6 @@ const Characters = new Schema({
         type: Number,
         default: 0
     },
-    sp: {
-        type: Number,
-        default: 0
-    },
     stats: {
         // Влияет на Маг.атаку
         int: {
@@ -73,78 +69,6 @@ const Characters = new Schema({
         luck: {
             type: Number,
             default: 1
-        },
-        pAtkSpd: {
-            type: Number,
-            default: 1
-        },
-        mAtkSpd: {
-            type: Number,
-            default: 1
-        },
-        pAtk: {
-            type: Number,
-            default: 1
-        },
-        pDef: {
-            chest: {
-                type: Number,
-                default: 1
-            },
-            legs: {
-                type: Number,
-                default: 1
-            },
-            head: {
-                type: Number,
-                default: 1
-            },
-            feet: {
-                type: Number,
-                default: 1
-            },
-            gloves: {
-                type: Number,
-                default: 1
-            },
-            underwear: {
-                type: Number,
-                default: 1
-            },
-            cloak: {
-                type: Number,
-                default: 1
-            }
-        },
-        mAtk: {
-            type: Number,
-            default: 1
-        },
-        mDef: {
-            rear: {
-                type: Number,
-                default: 1
-            },
-            lear: {
-                type: Number,
-                default: 1
-            },
-            rFinger: {
-                type: Number,
-                default: 1
-            },
-            lFinger: {
-                type: Number,
-                default: 1
-            },
-            neck: {
-                type: Number,
-                default: 1
-            }
-        },
-        breath: {
-            type: Number,
-            default: 100
         }
     },
     createDate: {
