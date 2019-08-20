@@ -1,5 +1,5 @@
 module.exports = {
-    '1': {
+    1: {
         name: 'Меч Орков',
         type: 'SWORD',
         price: 41,
@@ -10,6 +10,9 @@ module.exports = {
         specifications: {
             canSell: true,
             autoSell: false
+        },
+        condition: {
+            srt: 5
         }
     }
 };

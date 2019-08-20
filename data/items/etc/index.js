@@ -1,5 +1,5 @@
 module.exports = {
-    '1': {
+    1: {
         name: 'Илдим',
         price: 0,
         specifications: {
@@ -7,7 +7,7 @@ module.exports = {
             autoSell: false
         }
     },
-    '2': {
+    2: {
         name: 'Целебное зелье',
         price: 5,
         specifications: {

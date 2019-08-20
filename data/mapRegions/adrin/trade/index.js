@@ -6,9 +6,9 @@ module.exports = {
         description: 'Описание торговой прощади города'
     },
     buylist: {
-        weapons: ['1'],
+        weapons: [1],
         armors: [],
-        etc: ['2']
+        etc: [2]
     }
 };
 

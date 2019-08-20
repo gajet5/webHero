@@ -19,14 +19,6 @@ const CharactersEquipment = new Schema({
             },
             itemId: {
                 type: Number,
-            },
-            pAtk: {
-                type: Number,
-                default: 1
-            },
-            mAtk: {
-                type: Number,
-                default: 1
             }
         },
         rHand: {
@@ -40,14 +32,6 @@ const CharactersEquipment = new Schema({
             },
             itemId: {
                 type: Number,
-            },
-            pAtk: {
-                type: Number,
-                default: 1
-            },
-            mAtk: {
-                type: Number,
-                default: 1
             }
         },
     },
@@ -63,14 +47,6 @@ const CharactersEquipment = new Schema({
             },
             itemId: {
                 type: Number,
-            },
-            pDef: {
-                type: Number,
-                default: 1
-            },
-            mDef: {
-                type: Number,
-                default: 1
             }
         },
         legs: {
@@ -84,14 +60,6 @@ const CharactersEquipment = new Schema({
             },
             itemId: {
                 type: Number,
-            },
-            pDef: {
-                type: Number,
-                default: 1
-            },
-            mDef: {
-                type: Number,
-                default: 1
             }
         },
         head: {
@@ -105,14 +73,6 @@ const CharactersEquipment = new Schema({
             },
             itemId: {
                 type: Number,
-            },
-            pDef: {
-                type: Number,
-                default: 1
-            },
-            mDef: {
-                type: Number,
-                default: 1
             }
         },
         feet: {
@@ -126,14 +86,6 @@ const CharactersEquipment = new Schema({
             },
             itemId: {
                 type: Number,
-            },
-            pDef: {
-                type: Number,
-                default: 1
-            },
-            mDef: {
-                type: Number,
-                default: 1
             }
         },
         gloves: {
@@ -147,14 +99,6 @@ const CharactersEquipment = new Schema({
             },
             itemId: {
                 type: Number,
-            },
-            pDef: {
-                type: Number,
-                default: 1
-            },
-            mDef: {
-                type: Number,
-                default: 1
             }
         },
         underwear: {
@@ -168,14 +112,6 @@ const CharactersEquipment = new Schema({
             },
             itemId: {
                 type: Number,
-            },
-            pDef: {
-                type: Number,
-                default: 1
-            },
-            mDef: {
-                type: Number,
-                default: 1
             }
         },
         cloak: {
@@ -189,14 +125,6 @@ const CharactersEquipment = new Schema({
             },
             itemId: {
                 type: Number,
-            },
-            pDef: {
-                type: Number,
-                default: 1
-            },
-            mDef: {
-                type: Number,
-                default: 1
             }
         },
         rear: {
@@ -210,14 +138,6 @@ const CharactersEquipment = new Schema({
             },
             itemId: {
                 type: Number,
-            },
-            pDef: {
-                type: Number,
-                default: 1
-            },
-            mDef: {
-                type: Number,
-                default: 1
             }
         },
         lear: {
@@ -231,14 +151,6 @@ const CharactersEquipment = new Schema({
             },
             itemId: {
                 type: Number,
-            },
-            pDef: {
-                type: Number,
-                default: 1
-            },
-            mDef: {
-                type: Number,
-                default: 1
             }
         },
         rFinger: {
@@ -252,14 +164,6 @@ const CharactersEquipment = new Schema({
             },
             itemId: {
                 type: Number,
-            },
-            pDef: {
-                type: Number,
-                default: 1
-            },
-            mDef: {
-                type: Number,
-                default: 1
             }
         },
         lFinger: {
@@ -273,14 +177,6 @@ const CharactersEquipment = new Schema({
             },
             itemId: {
                 type: Number,
-            },
-            pDef: {
-                type: Number,
-                default: 1
-            },
-            mDef: {
-                type: Number,
-                default: 1
             }
         },
         neck: {
@@ -294,14 +190,6 @@ const CharactersEquipment = new Schema({
             },
             itemId: {
                 type: Number,
-            },
-            pDef: {
-                type: Number,
-                default: 1
-            },
-            mDef: {
-                type: Number,
-                default: 1
             }
         }
     }
