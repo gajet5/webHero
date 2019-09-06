@@ -7,6 +7,7 @@ const charactersModel = require(path.join(__basedir, 'models', 'characters'));
 const charactersItemsModel = require(path.join(__basedir, 'models', 'charactersItems'));
 const charactersEquipmentModel = require(path.join(__basedir, 'models', 'charactersEquipment'));
 const charactersSkillsModel = require(path.join(__basedir, 'models', 'charactersSkills'));
+const charactersZonesModel = require(path.join(__basedir, 'models', 'charactersZones'));
 
 const keyboards = require(path.join(__dirname, 'keyboards'));
 const messages = require(path.join(__dirname, 'messages'));
@@ -69,6 +70,13 @@ module.exports = {
 
         await charactersSkillsModel.create({
             owner: character,
+        });
+
+        await charactersZonesModel.create({
+            owner: character,
+            mapRegion: 'adrin',
+            id: 1,
+            available: true
         });
 
         ctx.session.character.id = character.id;

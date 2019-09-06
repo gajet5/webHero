@@ -7,23 +7,14 @@ const CharactersZones = new Schema({
         ref: 'Characters',
         require: true
     },
-    current: {
+    mapRegion: {
         type: String,
         require: true
     },
-    zones: [
-        {
-            id: {
-                type: String,
-                require: true
-            },
-            availability: {
-                type: Boolean,
-                require: true,
-                default: false
-            }
-        }
-    ]
+    id: {
+        type: Number,
+        require: true
+    }
 });
 
 module.exports = mongoose.model('CharactersZones', CharactersZones);

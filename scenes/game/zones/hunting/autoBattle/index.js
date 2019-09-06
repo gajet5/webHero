@@ -17,6 +17,7 @@ module.exports = new Scene('gameZonesHuntingAutoBattle')
         const msgs = [];
         const character = await charactersModel.findById(ctx.session.character.id);
         const equipment = await charactersEquipmentModel.findOne({ owner: character });
+        const equipmentObject = equipment.toObject();
         const opponent = npcs[ctx.session.state.opponentId];
 
         opponent.stats = {
@@ -35,16 +36,14 @@ module.exports = new Scene('gameZonesHuntingAutoBattle')
         let characterMDef = 0;
         let enemyHp = opponent.stats.con * gameCfg.rateHp;
 
-        for (let i = 0; i < equipment.length; i += 1) {
-            console.log(equipment[i])
-        }
-
-        for (let category in equipment) {
+        for (let category in equipmentObject) {
             if (!/weapons|armors/.test(category)) {
                 continue;
             }
             
-            for (let item in equipment[category]) {
+            for (let slot in equipmentObject[category]) {
+                const item = equipmentObject[category][slot];
+
                 if (category === 'armors') {
                     if (!item.equipped) {
                         characterPDef += 1;
@@ -74,7 +73,7 @@ module.exports = new Scene('gameZonesHuntingAutoBattle')
         characterDmg = characterDmg > 0 ? characterDmg : 0;
 
         while (true) {
-            if (characterHp < 0 || enemyHp < 0) {
+            if (characterHp <= 0 || enemyHp <= 0) {
                 break;
             }
 
